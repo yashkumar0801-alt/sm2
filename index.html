@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>StudyMantra — NIT Durgapur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: #fdfdfd; 
+  --bg-card: #ffffff;
+  --bg-nav: #ffffff;
+  --accent: #16a34a; 
+  --accent2: #22c55e;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --tab-active-bg: #16a34a;
+  --tab-active-text: #ffffff;
+  --tab-bg: #f1f5f9;
+  --tab-text: #334155;
+  --section-head: #0f172a;
+  --badge-bg: #dcfce7;
+  --badge-text: #16a34a;
+  --input-bg: #f8fafc;
+  --shadow: 0 4px 20px rgba(0,0,0,0.04);
+  --pw-blob: #f0fdf4; 
+  --transition: 0.22s ease;
+}
+[data-theme="dark"] {
+  --bg: #0f172a;
+  --bg-card: #1e293b;
+  --bg-nav: #1e293b;
+  --accent: #4ade80;
+  --accent2: #86efac;
+  --text: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --tab-active-bg: #16a34a;
+  --tab-active-text: #ffffff;
+  --tab-bg: #334155;
+  --tab-text: #cbd5e1;
+  --section-head: #f8fafc;
+  --badge-bg: #064e3b;
+  --badge-text: #4ade80;
+  --input-bg: #0f172a;
+  --shadow: 0 4px 20px rgba(0,0,0,0.3);
+  --pw-blob: #14532d;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Arial', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+nav {
+  background: var(--bg-nav);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 80px;
+}
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  text-decoration: none;
+}
+.logo-stu {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+.logo-hub {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+}
+.logo-sub {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-left: 8px;
+  text-transform: uppercase;
+}
+.nav-actions { display: flex; align-items: center; gap: 16px; }
+.nav-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-family: 'Arial', sans-serif;
+  font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all var(--transition);
+}
+.nav-btn:hover { background: var(--input-bg); border-color: var(--text-muted); }
+.nav-btn.login-btn {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+.nav-btn.login-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.nav-btn svg { width: 16px; height: 16px; }
+
+/* ── THEME SWITCH ── */
+.theme-switch {
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; padding: 0; border: none; background: transparent; height: 36px;
+  margin-left: 12px;
+}
+.switch-track {
+  width: 50px; height: 26px; border-radius: 999px;
+  background: var(--border); position: relative; transition: 0.25s;
+}
+.switch-track.on { background: var(--accent); }
+.switch-thumb {
+  position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%;
+  background: #fff; transition: transform 0.25s ease; box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  display: flex; align-items: center; justify-content: center; font-size: 11px;
+}
+.switch-track.on .switch-thumb { transform: translateX(24px); }
+
+/* ── PW STYLE HERO ── */
+.hero {
+  max-width: 1200px; margin: 0 auto;
+  padding: 80px 24px 100px;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center;
+}
+.hero h1 {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 900; font-size: clamp(36px, 5vw, 54px);
+  color: var(--text); line-height: 1.2;
+  margin-bottom: 16px; letter-spacing: -1px;
+}
+.hero h1 span { color: var(--accent); }
+.hero p {
+  color: var(--text-muted); font-size: 18px; max-width: 600px; font-weight: 400; margin: 0 auto;
+}
+
+/* ── PW STATS BAR ── */
+.pw-stats-container {
+  max-width: 1000px; margin: -60px auto 60px; padding: 0 24px; position: relative; z-index: 10;
+}
+.pw-stats {
+  background: var(--bg-card); border-radius: 16px; box-shadow: var(--shadow);
+  display: flex; justify-content: space-evenly; align-items: center; padding: 24px 12px;
+  border: 1px solid var(--border); flex-wrap: wrap; gap: 16px;
+}
+.pw-stat-item {
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; flex: 1; min-width: 150px;
+}
+.pw-stat-icon {
+  width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;
+}
+.pw-stat-val { font-size: 20px; font-weight: 700; color: var(--text); }
+.pw-stat-sub { font-size: 13px; color: var(--text-muted); }
+.pw-stat-divider { width: 1px; height: 60px; background: var(--border); }
+@media (max-width: 768px) { .pw-stat-divider { display: none; } }
+
+/* ── PW SECTION HEADERS ── */
+.pw-section { max-width: 1200px; margin: 0 auto; padding: 0 24px 80px; }
+.pw-section-header { text-align: center; margin-bottom: 40px; }
+.pw-section-header h2 { font-size: 36px; font-weight: 800; color: var(--text); margin-bottom: 8px; letter-spacing: -0.5px; }
+.pw-section-header p { font-size: 16px; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+
+/* ── PW FLAT TABS ── */
+.acad-tabs-row {
+  display: flex; gap: 12px; margin-bottom: 32px; justify-content: center; flex-wrap: wrap;
+}
+.acad-tab-btn {
+  padding: 10px 24px; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--bg-card); color: var(--text-muted);
+  font-family: 'Arial', sans-serif; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s ease;
+}
+.acad-tab-btn:hover { background: var(--input-bg); color: var(--text); }
+.acad-tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.acad-tab-btn.locked { opacity: 0.5; cursor: not-allowed; }
+
+/* ── TAB CONTENT ── */
+.tab-panels { padding: 0; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── PW STYLE CARDS ── */
+.resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+.pw-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+  padding: 28px; position: relative; overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02); transition: transform 0.25s, box-shadow 0.25s;
+  cursor: pointer; min-height: 220px; text-align: left;
+}
+.pw-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent); }
+.pw-card-blob {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 140px;
+  background: var(--pw-blob); border-radius: 100px 0 0 100px;
+  z-index: 0; transition: width 0.3s;
+}
+.pw-card:hover .pw-card-blob { width: 160px; }
+.pw-card-content { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; }
+.pw-card-title { font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 16px; letter-spacing: -0.5px; max-width: 80%; line-height: 1.3; }
+.pw-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.pw-tag {
+  border: 1px solid var(--border); padding: 4px 14px; border-radius: 20px;
+  font-size: 12px; font-weight: 600; color: var(--text-muted); background: var(--bg-card);
+}
+.pw-explore {
+  margin-top: auto; font-size: 15px; font-weight: 600; color: var(--text);
+  display: flex; align-items: center; gap: 8px; transition: color 0.2s;
+}
+.pw-explore span { font-size: 18px; transition: transform 0.2s; }
+.pw-card:hover .pw-explore { color: var(--accent); }
+.pw-card:hover .pw-explore span { transform: translateX(4px); }
+.pw-card-icon {
+  position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
+  font-size: 56px; z-index: 1; transition: transform 0.3s;
+}
+.pw-card:hover .pw-card-icon { transform: translateY(-50%) scale(1.1); }
+
+/* ── UTILITIES WRAPPER ── */
+.utility-wrapper {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px;
+  padding: 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+/* ── SGPA CALCULATOR NEW ── */
+.sgpa-wrap { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+.sgpa-step { display: flex; flex-direction: column; gap: 12px; }
+.sgpa-step-label { font-size: 14px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.7px; }
+.sgpa-chip-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.sgpa-chip {
+  padding: 10px 24px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--bg); color: var(--text); font-family: 'Arial', sans-serif;
+  font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+}
+.sgpa-chip:hover { border-color: var(--accent); background: var(--badge-bg); }
+.sgpa-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.sgpa-marks-table { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--bg-card); }
+.sgpa-marks-header {
+  display: grid; grid-template-columns: 1fr 80px 120px 90px; padding: 14px 20px;
+  background: var(--tab-bg); font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;
+}
+.sgpa-mark-row {
+  display: grid; grid-template-columns: 1fr 80px 120px 90px; padding: 12px 20px;
+  align-items: center; border-top: 1px solid var(--border); gap: 16px;
+}
+.sgpa-mark-row:hover { background: var(--bg); }
+.sgpa-subject-name { font-size: 15px; font-weight: 600; color: var(--text); }
+.sgpa-mark-input {
+  padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--input-bg);
+  color: var(--text); font-family: 'Arial', sans-serif; font-size: 15px; outline: none; width: 100%; text-align: center; font-weight: 600;
+}
+.sgpa-mark-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--badge-bg); }
+.sgpa-grade-badge {
+  font-size: 14px; font-weight: 700; padding: 6px 12px; border-radius: 8px; text-align: center;
+  background: var(--tab-bg); color: var(--text-muted); min-width: 50px;
+}
+
+/* ── BUTTONS ── */
+.btn-primary {
+  padding: 12px 24px; border-radius: 8px; border: none; background: var(--accent); color: #fff;
+  font-family: 'Arial', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: opacity 0.15s;
+  text-decoration: none; display: inline-block; text-align: center;
+}
+.btn-primary:hover { opacity: 0.9; }
+.btn-secondary {
+  padding: 12px 24px; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: var(--text);
+  font-family: 'Arial', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.15s;
+}
+.btn-secondary:hover { background: var(--input-bg); }
+
+.result-box { background: var(--accent); border-radius: 16px; padding: 24px 32px; display: none; color: #fff; box-shadow: 0 8px 20px rgba(22,163,74,0.2); }
+.result-box.show { display: block; animation: fadeIn 0.3s ease; }
+.result-label { font-size: 13px; opacity: 0.8; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px; }
+.result-value { font-family: 'Arial Black', Arial, sans-serif; font-size: 42px; font-weight: 900; letter-spacing: -1px; line-height: 1; }
+
+/* ── CONVERTER ── */
+.conv-wrap { max-width: 400px; margin: 0 auto; }
+.input-group { margin-bottom: 20px; }
+.input-group label { display: block; font-size: 13px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; }
+.input-group input { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--input-bg); color: var(--text); font-size: 16px; outline: none; transition: 0.2s; font-weight: 600; }
+.input-group input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--badge-bg); }
+.scale-row { display: flex; gap: 12px; margin-bottom: 20px; }
+.scale-btn { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.scale-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ── FORMAT TEMPLATE CARDS ── */
+.download-card {
+  background: var(--input-bg); padding: 32px; border-radius: 16px; border: 1px solid var(--border); max-width: 600px; margin: 0 auto; text-align: center;
+}
+.download-card .template-header { font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 12px; letter-spacing: -0.5px; }
+.download-card .template-desc { font-size: 15px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; }
+
+/* ── SKILLS CONTENT ── */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.skill-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+  cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+.skill-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow); }
+.skill-emoji { font-size: 32px; background: var(--tab-bg); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 12px; flex-shrink: 0; }
+.skill-info { display: flex; flex-direction: column; }
+.skill-name { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.skill-meta { font-size: 13px; color: var(--text-muted); }
+
+/* ── STANDARD MODAL ── */
+.modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(15, 23, 42, 0.6); align-items: center; justify-content: center; backdrop-filter: blur(4px); }
+.modal-overlay.open { display: flex; animation: fadeIn 0.15s ease; }
+.modal-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; width: min(480px, 90vw); position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+@keyframes popBounce { 0% { opacity: 0; transform: scale(0.9) translateY(15px); } 60% { opacity: 1; transform: scale(1.02) translateY(-2px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
+.modal-overlay.open .modal-box { animation: popBounce 0.35s ease-out forwards; }
+.modal-close { position: absolute; top: 20px; right: 20px; width: 32px; height: 32px; border-radius: 50%; border: none; background: var(--input-bg); color: var(--text-muted); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.modal-close:hover { background: #fee2e2; color: #ef4444; }
+.modal-title { font-family: 'Arial Black', Arial, sans-serif; font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 24px; letter-spacing: -0.5px; }
+
+/* ── PROFESSIONAL DROPDOWN STYLE ── */
+.custom-select {
+  width: 100%; padding: 12px 40px 12px 16px; border: 1px solid var(--border); border-radius: 8px;
+  background-color: var(--input-bg); background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat; background-position: right 16px center; background-size: 16px;
+  color: var(--text); font-family: 'Arial', sans-serif; font-size: 15px; font-weight: 600; outline: none; appearance: none; -webkit-appearance: none; transition: 0.2s; cursor: pointer;
+}
+.custom-select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--badge-bg); }
+.custom-select:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 36px; right: 36px; z-index: 300; background: var(--section-head); color: #fff;
+  padding: 16px 24px; border-radius: 12px; font-size: 15px; font-weight: 600; display: none;
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.toast.show { display: flex; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border); margin-top: 40px; }
+
+/* ── UTILITY CLASS FOR TABS ── */
+.hidden-tab { display: none !important; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav-actions .nav-btn span { display: none; }
+  .hero { padding: 40px 20px 80px; }
+  .pw-stats { flex-direction: column; gap: 24px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .pw-card-blob { width: 100px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#" onclick="closeCategoryView()">
+      <span class="logo-stu">Study</span><span class="logo-hub">Mantra</span>
+      <span class="logo-sub">NIT Durgapur</span>
+    </a>
+    <div class="nav-actions">
+      
+      <button class="nav-btn" onclick="openModal('uploadModal')">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/></svg>
+        <span>Upload</span>
+      </button>
+      <button class="nav-btn" onclick="openModal('linkModal')">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"/></svg>
+        <span>Add Links</span>
+      </button>
+      <button class="nav-btn login-btn" onclick="openModal('loginModal')">
+        <span>Login/Register</span>
+      </button>
+      
+      <div class="theme-switch" onclick="toggleTheme()">
+        <div class="switch-track" id="switchTrack">
+          <div class="switch-thumb" id="switchThumb">☀️</div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</nav>
+
+<div class="hero" id="homeHero">
+  <div class="hero-badge">✦ Official Student Resource Hub</div>
+  <h1>Study Smarter,<br><span>NOT HARDER.</span></h1>
+  <p>Everything you need for college life — notes, PYQs, calculators, and formats. Made exclusively for NIT Durgapur students.</p>
+</div>
+
+<div class="pw-stats-container" id="homeStats">
+  <div class="pw-stats">
+    <div class="pw-stat-item">
+      <div class="pw-stat-icon" style="background:#e0e7ff; color:#3b82f6">📚</div>
+      <div>
+        <div class="pw-stat-val">9 Branches</div>
+        <div class="pw-stat-sub">Complete Syllabus</div>
+      </div>
+    </div>
+    <div class="pw-stat-divider"></div>
+    <div class="pw-stat-item">
+      <div class="pw-stat-icon" style="background:#fce7f3; color:#ec4899">📄</div>
+      <div>
+        <div class="pw-stat-val">500+ Notes</div>
+        <div class="pw-stat-sub">PYQs & Materials</div>
+      </div>
+    </div>
+    <div class="pw-stat-divider"></div>
+    <div class="pw-stat-item">
+      <div class="pw-stat-icon" style="background:#fef3c7; color:#f43f5e">⚡</div>
+      <div>
+        <div class="pw-stat-val">24 x 7</div>
+        <div class="pw-stat-sub">Instant SGPA Calc</div>
+      </div>
+    </div>
+    <div class="pw-stat-divider"></div>
+    <div class="pw-stat-item">
+      <div class="pw-stat-icon" style="background:#dcfce7; color:#16a34a">✔️</div>
+      <div>
+        <div class="pw-stat-val">Verified</div>
+        <div class="pw-stat-sub">Official Formats</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-sections view-fade" id="homeView">
+
+  <div class="pw-section" id="academic-resources">
+    <div class="pw-section-header">
+      <h2>Academic Resources</h2>
+      <p>StudyMantra is preparing students across 9 engineering branches. Select your branch below to find what you are preparing for.</p>
+    </div>
+    
+    <div class="acad-tabs-row" id="acad-tabs">
+      <button class="acad-tab-btn active" onclick="switchTab('acad','firstyear',this)">First Year</button>
+      <button class="acad-tab-btn" onclick="switchTab('acad','mech',this)">Mechanical</button>
+      <button class="acad-tab-btn" onclick="switchTab('acad','mnc',this)">Maths & Computing</button>
+      <button class="acad-tab-btn locked" onclick="showLocked()">Civil</button>
+      <button class="acad-tab-btn locked" onclick="showLocked()">Electrical</button>
+      <button class="acad-tab-btn locked" onclick="showLocked()">Computer Sc.</button>
+      <button class="acad-tab-btn locked" onclick="showLocked()">ECE</button>
+      <button class="acad-tab-btn locked" onclick="showLocked()">Chemical</button>
+      <button class="acad-tab-btn locked" onclick="showLocked()">Bio Tech</button>
+      <button class="acad-tab-btn locked" onclick="showLocked()">Metallurgy</button>
+    </div>
+    
+    <div class="tab-panels">
+      
+      <div class="tab-panel active" id="acad-firstyear">
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openCategory('Lecture Notes', '📝', 'Comprehensive handwritten and digital notes directly from top students and professors.', 'firstyear')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Lecture Notes</div>
+              <div class="pw-tags"><span class="pw-tag">Handwritten</span><span class="pw-tag">Digital PDF</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">📝</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('PYQs', '🕐', 'Past mid-sem and end-sem examination papers to help you understand the question patterns.', 'firstyear')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">PYQs</div>
+              <div class="pw-tags"><span class="pw-tag">Mid-Sem</span><span class="pw-tag">End-Sem</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">🕐</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('Lecture Links on YouTube', '▶️', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'firstyear')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">YouTube Links</div>
+              <div class="pw-tags"><span class="pw-tag">NPTEL</span><span class="pw-tag">Playlists</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">▶️</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('Assignments', '📌', 'Solved assignments and sheets given in class.', 'firstyear')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Assignments</div>
+              <div class="pw-tags"><span class="pw-tag">Solved Sheets</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">📌</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('Lab Reports', '🧪', 'Reference materials, observation tables, and formatting guides for your practical laboratory sessions.', 'firstyear')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Lab Reports</div>
+              <div class="pw-tags"><span class="pw-tag">Observations</span><span class="pw-tag">Formats</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">🧪</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('Books', '📚', 'Recommended textbooks and reference materials for your syllabus.', 'firstyear')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Books</div>
+              <div class="pw-tags"><span class="pw-tag">Textbooks</span><span class="pw-tag">Reference</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">📚</div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="tab-panel" id="acad-mech">
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openCategory('Lecture Notes', '📝', 'Comprehensive handwritten and digital notes directly from top students and professors.', 'mech')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Lecture Notes</div>
+              <div class="pw-tags"><span class="pw-tag">Handwritten</span><span class="pw-tag">Digital PDF</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">📝</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('PYQs', '🕐', 'Past mid-sem and end-sem examination papers to help you understand the question patterns.', 'mech')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">PYQs</div>
+              <div class="pw-tags"><span class="pw-tag">Mid-Sem</span><span class="pw-tag">End-Sem</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">🕐</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('Lecture Links on YouTube', '▶️', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'mech')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">YouTube Links</div>
+              <div class="pw-tags"><span class="pw-tag">NPTEL</span><span class="pw-tag">Playlists</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">▶️</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('Assignments', '📌', 'Solved assignments and sheets given in class.', 'mech')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Assignments</div>
+              <div class="pw-tags"><span class="pw-tag">Solved Sheets</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">📌</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('Lab Reports', '🧪', 'Reference materials, observation tables, and formatting guides for your practical laboratory sessions.', 'mech')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Lab Reports</div>
+              <div class="pw-tags"><span class="pw-tag">Observations</span><span class="pw-tag">Formats</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">🧪</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('Books', '📚', 'Recommended textbooks and reference materials for your syllabus.', 'mech')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Books</div>
+              <div class="pw-tags"><span class="pw-tag">Textbooks</span><span class="pw-tag">Reference</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">📚</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-panel" id="acad-mnc">
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openCategory('Lecture Notes', '📝', 'Comprehensive handwritten and digital notes.', 'mnc')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Lecture Notes</div>
+              <div class="pw-tags"><span class="pw-tag">Handwritten</span><span class="pw-tag">Digital PDF</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">📝</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('PYQs', '🕐', 'Past mid-sem and end-sem examination papers to help you understand the question patterns.', 'mnc')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">PYQs</div>
+              <div class="pw-tags"><span class="pw-tag">Mid-Sem</span><span class="pw-tag">End-Sem</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">🕐</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('Lecture Links on YouTube', '▶️', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'mnc')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">YouTube Links</div>
+              <div class="pw-tags"><span class="pw-tag">NPTEL</span><span class="pw-tag">Playlists</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">▶️</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('Assignments', '📌', 'Solved assignments and sheets given in class.', 'mnc')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Assignments</div>
+              <div class="pw-tags"><span class="pw-tag">Solved Sheets</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">📌</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('Lab Reports', '🧪', 'Reference materials, observation tables, and formatting guides for your practical laboratory sessions.', 'mnc')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Lab Reports</div>
+              <div class="pw-tags"><span class="pw-tag">Observations</span><span class="pw-tag">Formats</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">🧪</div>
+          </div>
+          
+          <div class="pw-card" onclick="openCategory('Books', '📚', 'Recommended textbooks and reference materials for your syllabus.', 'mnc')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Books</div>
+              <div class="pw-tags"><span class="pw-tag">Textbooks</span><span class="pw-tag">Reference</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+            <div class="pw-card-icon">📚</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pw-section">
+    <div class="pw-section-header">
+      <h2>Daily Utilities</h2>
+      <p>Essential tools and official document formats designed to make your everyday campus life easier.</p>
+    </div>
+    
+    <div class="utility-wrapper">
+      <div class="acad-tabs-row" id="util-tabs">
+        <button class="acad-tab-btn active" onclick="switchTab('util','sgpa',this)">SGPA Calculator</button>
+        <button class="acad-tab-btn" onclick="switchTab('util','conv',this)">SGPA → %</button>
+        <button class="acad-tab-btn" onclick="switchTab('util','noc',this)">NOC Format</button>
+        <button class="acad-tab-btn" onclick="switchTab('util','hostel',this)">Hostel Format</button>
+        <button class="acad-tab-btn" onclick="switchTab('util','cv',this)">CV Format</button>
+      </div>
+
+      <div class="tab-panels">
+        <div class="tab-panel active" id="util-sgpa">
+          <div class="sgpa-wrap">
+            <div class="sgpa-step" id="step-year">
+              <div class="sgpa-step-label">Select Your Year</div>
+              <div class="sgpa-chip-row">
+                <button class="sgpa-chip" onclick="selectYear(1, this)">1st Year</button>
+                <button class="sgpa-chip" onclick="selectYear(2, this)">2nd Year</button>
+                <button class="sgpa-chip" onclick="selectYear(3, this)">3rd Year</button>
+                <button class="sgpa-chip" onclick="selectYear(4, this)">4th Year</button>
+              </div>
+            </div>
+            <div class="sgpa-step" id="step-group" style="display:none;">
+              <div class="sgpa-step-label">Select Your Section Group</div>
+              <div class="sgpa-chip-row">
+                <button class="sgpa-chip" onclick="selectGroup(1, this)">Group 1 &nbsp;(Sec A – D)</button>
+                <button class="sgpa-chip" onclick="selectGroup(2, this)">Group 2 &nbsp;(Sec E – H)</button>
+              </div>
+            </div>
+            <div class="sgpa-step" id="step-branch" style="display:none;">
+              <div class="sgpa-step-label">Select Your Branch</div>
+              <div class="sgpa-chip-row">
+                <button class="sgpa-chip" onclick="selectBranch('mech', this)">Mechanical</button>
+                <button class="sgpa-chip" onclick="selectBranch('mnc', this)">Math & Computing</button>
+                <button class="sgpa-chip" onclick="selectBranch('civil', this)">Civil</button>
+                <button class="sgpa-chip" onclick="selectBranch('elec', this)">Electrical</button>
+                <button class="sgpa-chip" onclick="selectBranch('cse', this)">Computer</button>
+                <button class="sgpa-chip" onclick="selectBranch('ece', this)">ECE</button>
+                <button class="sgpa-chip" onclick="selectBranch('chem', this)">Chemical</button>
+                <button class="sgpa-chip" onclick="selectBranch('bio', this)">Bio Technology</button>
+                <button class="sgpa-chip" onclick="selectBranch('meta', this)">Metallurgy</button>
+              </div>
+            </div>
+            <div class="sgpa-step" id="step-sem" style="display:none;">
+              <div class="sgpa-step-label">Select Semester</div>
+              <div class="sgpa-chip-row" id="semChips"></div>
+            </div>
+            <div class="sgpa-step" id="step-marks" style="display:none;">
+              <div class="sgpa-step-label">Enter Your Marks <span style="font-size:12px; color:var(--text-muted); font-weight:500; text-transform:none;">(out of 100)</span></div>
+              <div class="sgpa-marks-table">
+                <div class="sgpa-marks-header">
+                  <span>Subject</span>
+                  <span style="text-align:center;">Credits</span>
+                  <span style="text-align:center;">Marks</span>
+                  <span style="text-align:center;">Grade</span>
+                </div>
+                <div id="marksRows"></div>
+              </div>
+              <button class="btn-primary" style="margin-top:16px; max-width:200px;" onclick="calcSGPANew()">Calculate SGPA</button>
+            </div>
+            <div class="result-box" id="sgpaResult">
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+                <div>
+                  <div class="result-label">Your SGPA</div>
+                  <div class="result-value" id="sgpaValue">—</div>
+                </div>
+                <div>
+                  <div class="result-label">Equivalent %</div>
+                  <div class="result-value" id="sgpaPercent">—</div>
+                </div>
+              </div>
+              <button class="btn-secondary" style="margin-top:24px; background:rgba(255,255,255,0.15); border-color:rgba(255,255,255,0.3); color:#fff;" onclick="resetSGPA()">Reset Calculator</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="util-conv">
+          <div class="conv-wrap">
+            <div class="input-group">
+              <label>Enter Your SGPA</label>
+              <input type="number" id="sgpaInput" min="0" max="10" step="0.01" placeholder="e.g. 8.5" oninput="convertSGPA()" />
+            </div>
+            <div class="input-group" style="margin-bottom:8px;">
+              <label>Grading Scale</label>
+            </div>
+            <div class="scale-row">
+              <button class="scale-btn active" onclick="setScale(10, this)">10-Point Scale</button>
+              <button class="scale-btn" onclick="setScale(4, this)">4-Point Scale</button>
+            </div>
+            <div class="result-box" id="convResult" style="display:none; margin-top:24px;">
+              <div class="result-label">Equivalent Percentage</div>
+              <div class="result-value" id="convValue">—</div>
+            </div>
+            <p style="font-size:12px; color:var(--text-muted); margin-top:16px; font-weight:600;">Formula: (10-pt) = (SGPA − 0.75) × 10 &nbsp;|&nbsp; (4-pt) = (SGPA / 4) × 100</p>
+          </div>
+        </div>
+        
+        <div class="tab-panel" id="util-noc">
+          <div class="scale-row" style="margin: 0 auto 32px; max-width: 500px;">
+            <button class="scale-btn active" onclick="switchNocTab('vt', this)">Vocational Training</button>
+            <button class="scale-btn" onclick="switchNocTab('intern', this)">Internship</button>
+          </div>
+          <div class="download-card" id="noc-vt-wrap">
+            <div class="template-header">Vocational Training NOC</div>
+            <p class="template-desc">Download the official application format for obtaining a No Objection Certificate (NOC) for Vocational Training programs.</p>
+            <a href="./pdfs/VT Form (For Indian).pdf" download="Vocational_Training_NOC.pdf" class="btn-primary">Download PDF</a>
+          </div>
+          <div class="download-card" id="noc-intern-wrap" style="display:none;">
+            <div class="template-header">Internship NOC</div>
+            <p class="template-desc">Download the official application format for obtaining a No Objection Certificate (NOC) for Internship positions.</p>
+            <a href="./pdfs/Format_for_Internship_NIT_Durgapur_Student.pdf" download="Internship_NOC.pdf" class="btn-primary">Download PDF</a>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="util-hostel">
+          <div class="download-card">
+            <div class="template-header">Hostel Stay Extension Format</div>
+            <p class="template-desc">Download the official application format for requesting an extension of your hostel stay duration.</p>
+            <a href="./pdfs/hostel stay form.pdf" download="Hostel_Extension.pdf" class="btn-primary">Download PDF</a>
+          </div>
+        </div>
+        
+        <div class="tab-panel" id="util-cv">
+          <div class="download-card">
+            <div class="template-header">Official CV Format</div>
+            <p class="template-desc">Download the official, institute-approved CV/Resume format required for campus placements and internship drives.</p>
+            <a href="./pdfs/CV Format for UG1.pdf" download="CV_Format_UG1.pdf" class="btn-primary">Download Format</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pw-section">
+    <div class="pw-section-header">
+      <h2>Develop Skills</h2>
+      <p>Explore recommended learning tracks, resources, and project ideas to build your resume.</p>
+    </div>
+    
+    <div class="acad-tabs-row">
+      <button class="acad-tab-btn active" onclick="switchTab('skill','cae',this)">CAE & Design</button>
+      <button class="acad-tab-btn" onclick="switchTab('skill','micro',this)">Hardware & IoT</button>
+      <button class="acad-tab-btn" onclick="switchTab('skill','soft',this)">Soft Skills</button>
+      <button class="acad-tab-btn" onclick="switchTab('skill','code',this)">Software & Coding</button>
+    </div>
+    
+    <div class="tab-panels">
+      <div class="tab-panel active" id="skill-cae">
+        <div class="skills-grid">
+          <div class="skill-card"><div class="skill-emoji">🖥️</div><div class="skill-info"><div class="skill-name">ANSYS Basics</div><div class="skill-meta">FEA & simulation</div></div></div>
+          <div class="skill-card"><div class="skill-emoji">📐</div><div class="skill-info"><div class="skill-name">AutoCAD 2D/3D</div><div class="skill-meta">Design & drafting</div></div></div>
+          <div class="skill-card"><div class="skill-emoji">⚙️</div><div class="skill-info"><div class="skill-name">SolidWorks</div><div class="skill-meta">Mechanical design</div></div></div>
+          <div class="skill-card"><div class="skill-emoji">🔬</div><div class="skill-info"><div class="skill-name">CFD Analysis</div><div class="skill-meta">Fluid simulation</div></div></div>
+        </div>
+      </div>
+      <div class="tab-panel" id="skill-micro">
+        <div class="skills-grid">
+          <div class="skill-card"><div class="skill-emoji">🤖</div><div class="skill-info"><div class="skill-name">Arduino</div><div class="skill-meta">Beginner to advanced</div></div></div>
+          <div class="skill-card"><div class="skill-emoji">🍓</div><div class="skill-info"><div class="skill-name">Raspberry Pi</div><div class="skill-meta">Linux & IoT projects</div></div></div>
+          <div class="skill-card"><div class="skill-emoji">📡</div><div class="skill-info"><div class="skill-name">ESP32 / ESP8266</div><div class="skill-meta">WiFi & BT modules</div></div></div>
+          <div class="skill-card"><div class="skill-emoji">💡</div><div class="skill-info"><div class="skill-name">STM32</div><div class="skill-meta">ARM Cortex-M</div></div></div>
+        </div>
+      </div>
+      <div class="tab-panel" id="skill-soft">
+        <div class="skills-grid">
+          <div class="skill-card"><div class="skill-emoji">🎤</div><div class="skill-info"><div class="skill-name">Public Speaking</div><div class="skill-meta">Confidence & clarity</div></div></div>
+          <div class="skill-card"><div class="skill-emoji">✍️</div><div class="skill-info"><div class="skill-name">Technical Writing</div><div class="skill-meta">Reports & docs</div></div></div>
+          <div class="skill-card"><div class="skill-emoji">🤝</div><div class="skill-info"><div class="skill-name">Team Leadership</div><div class="skill-meta">Management</div></div></div>
+          <div class="skill-card"><div class="skill-emoji">🧠</div><div class="skill-info"><div class="skill-name">Critical Thinking</div><div class="skill-meta">Problem-solving</div></div></div>
+        </div>
+      </div>
+      <div class="tab-panel" id="skill-code">
+        <div class="skills-grid">
+          <div class="skill-card"><div class="skill-emoji">🐍</div><div class="skill-info"><div class="skill-name">Python</div><div class="skill-meta">Data science</div></div></div>
+          <div class="skill-card"><div class="skill-emoji">🌐</div><div class="skill-info"><div class="skill-name">Web Dev</div><div class="skill-meta">MERN Stack</div></div></div>
+          <div class="skill-card"><div class="skill-emoji">🏛️</div><div class="skill-info"><div class="skill-name">DSA</div><div class="skill-meta">Algorithms</div></div></div>
+          <div class="skill-card"><div class="skill-emoji">☁️</div><div class="skill-info"><div class="skill-name">Cloud & DevOps</div><div class="skill-meta">AWS, Docker</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <div class="main-sections view-fade" id="categoryView" style="display: none;">
+  <div class="pw-section">
+    
+    <div style="position: sticky; top: 100px; z-index: 90; height: 0;">
+      <button class="nav-btn" onclick="closeCategoryView()" style="position: absolute; left: 0; top: 15px; background: var(--bg-card); box-shadow: 0 4px 12px rgba(0,0,0,0.1);">← Back</button>
+    </div>
+
+    <div class="pw-section-header" style="margin-bottom: 24px;">
+      <div style="font-size: 48px; margin-bottom:12px;" id="catIcon">📝</div>
+      <h2 id="catTitle">Category Title</h2>
+      <p id="catDesc">Category Description</p>
+    </div>
+
+    <div class="acad-tabs-row" id="cat-tabs">
+      <div class="acad-tab-indicator" id="catIndicator" style="width: 0;"></div>
+      <button class="acad-tab-btn" onclick="switchCatTab('sem1',this)">Semester 1</button>
+      <button class="acad-tab-btn" onclick="switchCatTab('sem2',this)">Semester 2</button>
+      <button class="acad-tab-btn" onclick="switchCatTab('sem3',this)">Semester 3</button>
+      <button class="acad-tab-btn" onclick="switchCatTab('sem4',this)">Semester 4</button>
+      <button class="acad-tab-btn" onclick="switchCatTab('sem5',this)">Semester 5</button>
+      <button class="acad-tab-btn" onclick="switchCatTab('sem6',this)">Semester 6</button>
+      <button class="acad-tab-btn" onclick="switchCatTab('sem7',this)">Semester 7</button>
+      <button class="acad-tab-btn" onclick="switchCatTab('sem8',this)">Semester 8</button>
+    </div>
+
+    <div class="tab-panels">
+      <div class="tab-panel active" id="categoryContent">
+        </div>
+    </div>
+
+  </div>
+</div> <footer>
+  <strong>StudyMantra</strong> &nbsp;|&nbsp; Built with ♥ for NIT Durgapur students
+</footer>
+
+<div class="modal-overlay" id="uploadModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('uploadModal')">✕</button>
+    <div class="modal-title">Upload Resource</div>
+    
+    <div class="input-group">
+      <label>Title</label>
+      <input type="text" id="uploadTitle" autocomplete="off" />
+    </div>
+    
+    <div class="input-group">
+      <label>Semester</label>
+      <select id="uploadSem" class="custom-select" onchange="toggleBranch()">
+        <option value="" disabled selected>Select Semester</option>
+        <option value="1">Semester 1</option>
+        <option value="2">Semester 2</option>
+        <option value="3">Semester 3</option>
+        <option value="4">Semester 4</option>
+        <option value="5">Semester 5</option>
+        <option value="6">Semester 6</option>
+        <option value="7">Semester 7</option>
+        <option value="8">Semester 8</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Branch</label>
+      <select id="uploadBranch" class="custom-select" disabled>
+        <option value="" disabled selected>Select Branch</option>
+        <option>Mechanical</option>
+        <option>Mathematics & Computing</option>
+        <option>Civil</option>
+        <option>Electrical</option>
+        <option>Computer</option>
+        <option>ECE</option>
+        <option>Chemical</option>
+        <option>Bio Technology</option>
+        <option>Metallurgy</option>
+      </select>
+    </div>
+    
+    <div class="input-group">
+      <label>Google Drive Link</label>
+      <input type="text" id="uploadLink" autocomplete="off" />
+    </div>
+    
+    <div style="display:flex; gap:12px; margin-top:24px;">
+      <button class="btn-primary" style="flex:1;" onclick="submitResourceToGoogle()">Upload</button>
+      <button class="btn-secondary" onclick="closeModal('uploadModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="linkModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('linkModal')">✕</button>
+    <div class="modal-title">Add a Link</div>
+    <div class="input-group"><label>Label</label><input type="text" autocomplete="off" /></div>
+    <div class="input-group"><label>URL</label><input type="url" autocomplete="off" /></div>
+    <div class="input-group"><label>Section</label>
+      <select class="custom-select">
+        <option>Academic Resources</option><option>Daily Utilities</option><option>Skills</option>
+      </select>
+    </div>
+    <div style="display:flex; gap:12px; margin-top:24px;">
+      <button class="btn-primary" style="flex:1;" onclick="showToast('Link added!'); closeModal('linkModal');">Add Link</button>
+      <button class="btn-secondary" onclick="closeModal('linkModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('loginModal')">✕</button>
+    <div class="modal-title">Login to StudyMantra</div>
+    <div class="input-group"><label>Institute Roll No.</label><input type="text" autocomplete="off" /></div>
+    <div class="input-group"><label>Password</label><input type="password" autocomplete="off" /></div>
+    <div style="display:flex; gap:12px; margin-top:24px;">
+      <button class="btn-primary" style="flex:1;" onclick="showToast('Auth system coming soon!'); closeModal('loginModal');">Login</button>
+      <button class="btn-secondary" onclick="closeModal('loginModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="pdfModal">
+  <div class="modal-box" id="pdfModalBox" style="width: 90vw; height: 90vh; max-width: 1200px; display: flex; flex-direction: column; padding: 20px;">
+    
+    <button class="modal-close" onclick="closePdfViewer()" style="z-index: 10;">✕</button>
+    <button class="modal-close" onclick="toggleFullScreen()" id="fsBtn" style="right: 60px; z-index: 10; font-size: 14px;">⛶</button>
+    
+    <div class="modal-title" id="pdfModalTitle" style="margin-bottom: 12px; font-size: 20px; padding-right: 80px;">Document Viewer</div>
+    
+    <div style="flex: 1; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #fff; position: relative;">
+      <iframe id="pdfIframe" style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+function showLocked() { showToast('Coming Soon'); }
+
+/* =========================================================================
+   RESOURCE DATA WAREHOUSE
+   =========================================================================
+*/
+const resourceData = {}; // Purposely left empty so it auto-generates default subjects
+
+/* ── DYNAMIC CATEGORY VIEW LOGIC ── */
+let currentCategoryTitle = '';
+let currentCategoryBranch = '';
+
+function openCategory(title, icon, desc, branch) {
+  currentCategoryTitle = title;
+  currentCategoryBranch = branch;
+  
+  document.getElementById('homeHero').style.display = 'none';
+  document.getElementById('homeStats').style.display = 'none';
+  document.getElementById('homeView').style.display = 'none';
+  
+  document.getElementById('categoryView').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  document.getElementById('catTitle').textContent = title;
+  document.getElementById('catIcon').textContent = icon;
+  document.getElementById('catDesc').textContent = desc;
+
+  // Filter semester tabs based on branch selection
+  const semTabs = document.querySelectorAll('#cat-tabs button.acad-tab-btn');
+  semTabs.forEach((btn, index) => {
+    // Reset active state
+    btn.classList.remove('active');
+    
+    if (branch === 'firstyear') {
+      // First Year: show 1 & 2 (index 0, 1), hide 3-8 (index 2-7)
+      if (index >= 2) btn.classList.add('hidden-tab');
+      else btn.classList.remove('hidden-tab');
+    } else {
+      // Other Branches: hide 1 & 2 (index 0, 1), show 3-8 (index 2-7)
+      if (index < 2) btn.classList.add('hidden-tab');
+      else btn.classList.remove('hidden-tab');
+    }
+  });
+
+  // Hide the sliding indicator until a tab is clicked
+  const indicator = document.getElementById('catIndicator');
+  if(indicator) indicator.style.width = '0px';
+
+  // Show a default prompt instead of loading a semester automatically
+  const container = document.getElementById('categoryContent');
+  container.innerHTML = `<div style="padding: 60px 20px; text-align: center; color: var(--text-muted); font-size: 16px; font-weight:600; background: var(--input-bg); border-radius:16px;">Please select a semester from the tabs above.</div>`;
+}
+
+function closeCategoryView() {
+  document.getElementById('categoryView').style.display = 'none';
+  
+  document.getElementById('homeHero').style.display = 'flex';
+  document.getElementById('homeStats').style.display = 'block';
+  document.getElementById('homeView').style.display = 'block';
+  
+  setTimeout(() => {
+    const target = document.getElementById('academic-resources');
+    if(target) {
+      const yOffset = -80; 
+      const y = target.getBoundingClientRect().top + window.scrollY + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  }, 10);
+}
+
+function switchCatTab(sem, btn) {
+  const tabsContainer = document.getElementById('cat-tabs');
+  tabsContainer.querySelectorAll('.acad-tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  moveIndicator('cat', btn);
+
+  const container = document.getElementById('categoryContent');
+  let data = resourceData[currentCategoryTitle] && resourceData[currentCategoryTitle][sem];
+
+  // If no predefined data exists, fallback to placeholder subjects!
+  if (!data || data.length === 0) {
+    if (currentCategoryBranch === 'mech' && sem === 'sem3') {
+      if (currentCategoryTitle === 'Books') {
+        // ACTUAL GOOGLE DRIVE LINKS FOR SEMESTER 3 MECHANICAL
+        data = [
+          { icon: '🧱', title: 'Mechanics of Materials - Beer & Johnston', desc: '4th Edition', tag: 'Solid Mechanics', driveUrl: 'https://drive.google.com/file/d/1jEvDlPKgu4btPM0m5PYQOYrvv1yWkr9j/preview' },
+          { icon: '⚙️', title: 'Theory of Machines - S.S. Rattan', desc: '3rd Edition', tag: 'Theory of Machines', driveUrl: 'https://drive.google.com/file/d/1sVkdLLn2ovAKdLXkBpYJBROJ1n30TXqy/preview' },
+          { icon: '🔥', title: 'Engineering Thermodynamics - P.K. Nag', desc: 'Textbook', tag: 'Thermodynamics', driveUrl: 'https://drive.google.com/file/d/1F0i4aKy7wbOWYqsphRCrkVR537sFq1kN/preview' },
+          { icon: '📝', title: 'Engineering Thermodynamics Solutions - P.K. Nag', desc: 'Solved Exercises', tag: 'Solutions', driveUrl: 'https://drive.google.com/file/d/1_DInvPRUkr_CD63fFuw8ulqPyxmP4KBE/preview' },
+          { icon: '💨', title: 'Fundamentals of Gas Dynamics - R.D. Zucker', desc: 'Textbook', tag: 'Fluid Mechanics', driveUrl: 'https://drive.google.com/file/d/1tp2-XPXmj4Xt2b1iRlHqqlOimtLSNifh/preview' },
+          { icon: '📚', title: 'Engineering Subject Reference', desc: 'Additional Book', tag: 'Reference', driveUrl: 'https://drive.google.com/file/d/1GO2rf5eRX8rjMIzFwAI6UUZfnKjAD0Gy/preview' }
+        ];
+      } else if (currentCategoryTitle !== 'Lab Reports') {
+        data = [
+          { icon: '🧮', title: 'Mathematics 3 (MAC 331)', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
+          { icon: '🧱', title: 'Solid Mechanics (MEC 301)', desc: 'Previous year papers and solutions.', tag: 'Subject' },
+          { icon: '⚙️', title: 'Theory of Machine and Mechanics (MEC 302)', desc: 'Video lectures and reference links.', tag: 'Subject' },
+          { icon: '💧', title: 'Fluid Mechanics (MEC 303)', desc: 'Assignments and lab manuals.', tag: 'Subject' },
+          { icon: '🔥', title: 'Engineering Thermodynamics (MEC 304)', desc: 'Extra study materials.', tag: 'Subject' }
+        ];
+      }
+    } else if (currentCategoryBranch === 'mech' && sem === 'sem4' && currentCategoryTitle !== 'Lab Reports' && currentCategoryTitle !== 'Books') {
+      data = [
+        { icon: '⚙️', title: 'Design of Machine Elements - 1 (MEC 401)', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
+        { icon: '🏭', title: 'Casting, Forming and Welding (MEC 402)', desc: 'Previous year papers and solutions.', tag: 'Subject' },
+        { icon: '🌡️', title: 'Heat and Mass Transfer (MEC 403)', desc: 'Video lectures and reference links.', tag: 'Subject' },
+        { icon: '🏎️', title: 'Dynamics of Machine (MEC 404)', desc: 'Assignments and lab manuals.', tag: 'Subject' },
+        { icon: '🌊', title: 'Fluid Machines (MEC 405)', desc: 'Extra study materials.', tag: 'Subject' }
+      ];
+    } 
+    
+    // Default fallback if no special logic matches
+    if (!data) {
+      data = [
+        { icon: '📘', title: 'Subject 1', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
+        { icon: '📗', title: 'Subject 2', desc: 'Previous year papers and solutions.', tag: 'Subject' },
+        { icon: '📙', title: 'Subject 3', desc: 'Video lectures and reference links.', tag: 'Subject' },
+        { icon: '📕', title: 'Subject 4', desc: 'Assignments and lab manuals.', tag: 'Subject' },
+        { icon: '📓', title: 'Subject 5', desc: 'Extra study materials.', tag: 'Subject' }
+      ];
+    }
+  }
+
+  container.innerHTML = '<div class="resource-grid">' + data.map(item => {
+    // Escape single quotes for HTML attributes
+    const safeTitle = item.title.replace(/'/g, "\\'");
+    
+    // Check if it's a Drive URL or local File
+    let clickAction = "showToast('Content coming soon!')";
+    if (item.driveUrl) {
+      clickAction = `openPdfViewer('${item.driveUrl}', '${safeTitle}')`;
+    } else if (item.file) {
+      clickAction = `openPdfViewer('./pdfs/${item.file.replace(/'/g, "\\'")}', '${safeTitle}')`;
+    }
+    
+    return `
+    <div class="pw-card" onclick="${clickAction}">
+      <div class="pw-card-blob"></div>
+      <div class="pw-card-content">
+        <div class="pw-card-title">${item.title}</div>
+        <div class="pw-tags">
+          <span class="pw-tag">${item.tag || 'Resource'}</span>
+          <span class="pw-tag" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;">${item.desc || '...'}</span>
+        </div>
+        <div class="pw-explore">${(item.file || item.driveUrl) ? 'View Book' : 'View Content'} <span>→</span></div>
+      </div>
+      <div class="pw-card-icon">${item.icon}</div>
+    </div>
+  `}).join('') + '</div>';
+}
+
+/* ── PDF VIEWER LOGIC ── */
+function openPdfViewer(url, documentTitle) {
+  const iframe = document.getElementById('pdfIframe');
+  const titleEl = document.getElementById('pdfModalTitle');
+  
+  titleEl.textContent = documentTitle || 'Document Viewer';
+  iframe.src = url;
+  openModal('pdfModal');
+}
+
+function closePdfViewer() {
+  closeModal('pdfModal');
+  // Exit fullscreen if it's open
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
+  // Clear the iframe source slightly after closing so it doesn't stay loaded in the background
+  setTimeout(() => {
+    document.getElementById('pdfIframe').src = '';
+  }, 300);
+}
+
+function toggleFullScreen() {
+  const doc = window.document;
+  const docEl = document.getElementById('pdfModalBox'); // Make the whole modal fullscreen
+
+  const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+  const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+  if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+    requestFullScreen.call(docEl);
+    document.getElementById('fsBtn').innerHTML = '🗗'; // Change icon to windowed mode
+  }
+  else {
+    cancelFullScreen.call(doc);
+    document.getElementById('fsBtn').innerHTML = '⛶'; // Change back
+  }
+}
+
+// Listen for escape key exits to reset the full screen icon
+document.addEventListener('fullscreenchange', exitHandler);
+document.addEventListener('webkitfullscreenchange', exitHandler);
+document.addEventListener('mozfullscreenchange', exitHandler);
+document.addEventListener('MSFullscreenChange', exitHandler);
+
+function exitHandler() {
+    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+        const fsBtn = document.getElementById('fsBtn');
+        if(fsBtn) fsBtn.innerHTML = '⛶';
+    }
+}
+
+/* ── THEME ── */
+function toggleTheme() {
+  const html = document.documentElement;
+  const dark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', dark ? 'light' : 'dark');
+  document.getElementById('switchTrack').classList.toggle('on', !dark);
+  document.getElementById('switchThumb').textContent = dark ? '☀️' : '🌙';
+}
+
+/* ── TABS ── */
+function moveIndicator(section, btn) {
+  const indicatorId = section === 'acad' ? 'acadIndicator' : section === 'util' ? 'utilIndicator' : section === 'cat' ? 'catIndicator' : null;
+  if (!indicatorId) return;
+  const indicator = document.getElementById(indicatorId);
+  const row = btn.closest('.acad-tabs-row');
+  if (indicator && row) {
+    const rowRect = row.getBoundingClientRect();
+    const btnRect = btn.getBoundingClientRect();
+    indicator.style.left = (btnRect.left - rowRect.left) + 'px';
+    indicator.style.width = btnRect.width + 'px';
+  }
+}
+
+function switchTab(section, panel, btn) {
+  document.querySelectorAll(`.tab-panel[id^="${section}-"]`).forEach(p => p.classList.remove('active'));
+  const allBtns = btn.closest('.acad-tabs-row');
+  if (allBtns) allBtns.querySelectorAll('.acad-tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(`${section}-${panel}`).classList.add('active');
+  moveIndicator(section, btn);
+}
+
+function initIndicator(tabsId, indicatorId) {
+  const activeBtn = document.querySelector(`#${tabsId} .acad-tab-btn.active`);
+  const indicator = document.getElementById(indicatorId);
+  const row = document.getElementById(tabsId);
+  if (activeBtn && indicator && row) {
+    const rowRect = row.getBoundingClientRect();
+    const btnRect = activeBtn.getBoundingClientRect();
+    indicator.style.left = (btnRect.left - rowRect.left) + 'px';
+    indicator.style.width = btnRect.width + 'px';
+    indicator.style.transition = 'none';
+    setTimeout(() => indicator.style.transition = '', 50);
+  }
+}
+window.addEventListener('load', () => {
+  initIndicator('acad-tabs', 'acadIndicator');
+  initIndicator('util-tabs', 'utilIndicator');
+});
+
+/* ── SGPA CALCULATOR DATA WITH REAL SYLLABUS ── */
+const sgpaData = {
+  1: {
+    sems: [1, 2],
+    group1: {
+      1: [{n:'Mathematics I',c:4},{n:'Computer Programming',c:3},{n:'Engineering Mechanics',c:3},{n:'Basic Electrical & Electronics Engg',c:3},{n:'Ecology and Environment',c:3},{n:'Engineering Chemistry',c:3},{n:'Computer Programming Lab',c:1},{n:'Basic Electrical & Electronics Lab',c:2},{n:'Engineering Chemistry Lab',c:1}],
+      2: [{n:'Mathematics II',c:4},{n:'Data Structure and Algorithms',c:3},{n:'Engineering Physics',c:3},{n:'Professional Communication',c:3},{n:'Data Structure and Algorithms Lab',c:2},{n:'Engineering Graphics',c:3},{n:'Engineering Physics Lab',c:1},{n:'Extra Academic Activities',c:0}]
+    },
+    group2: {
+      1: [{n:'Mathematics I',c:4},{n:'Computer Programming',c:3},{n:'Engineering Mechanics',c:3},{n:'Engineering Physics',c:3},{n:'Professional Communication',c:3},{n:'Computer Programming Lab',c:3},{n:'Engineering Graphics',c:3},{n:'Engineering Physics Lab',c:1},{n:'Extra Academic Activities',c:0}],
+      2: [{n:'Mathematics II',c:4},{n:'Data Structure and Algorithms',c:3},{n:'Basic Electrical & Electronics Engg',c:3},{n:'Ecology and Environment',c:3},{n:'Engineering Chemistry',c:3},{n:'Engineering Chemistry Lab',c:1},{n:'Data Structure and Algorithms Lab',c:2},{n:'Basic Electrical & Electronics Lab',c:2}]
+    }
+  },
+  2: { 
+    sems:[3,4], 
+    mech: {
+      3: [{n:'Mathematics-III',c:4},{n:'Solid Mechanics',c:4},{n:'Theory of Machines and Mechanisms',c:4},{n:'Fluid Mechanics',c:4},{n:'Engineering Thermodynamics',c:4},{n:'Machine Drawing and Solid Modelling',c:2},{n:'Fluid Mechanics Lab',c:2},{n:'Workshop Practice-I',c:2}],
+      4: [{n:'Design of Machine Elements-I',c:4},{n:'Casting, Forming & Welding',c:4},{n:'Heat & Mass Transfer',c:4},{n:'Dynamics of Machines',c:3},{n:'Fluid Machines',c:3},{n:'Solid Mechanics Lab',c:2},{n:'Mechanism Laboratory',c:2},{n:'Workshop Practice-II',c:2}]
+    },
+    civil: {
+      3: [{n:'Mathematics - III',c:4},{n:'Solid Mechanics',c:4},{n:'Fluid Mechanics',c:3},{n:'Building Construction & Concrete Technology',c:4},{n:'Engineering Geology for Civil Engg',c:3},{n:'Engineering Geology Lab',c:3},{n:'Fluid Mechanics & Strength of Material Lab',c:3},{n:'Co-curricular Activities - III',c:0}],
+      4: [{n:'Structural Analysis-l',c:4},{n:'Design of Concrete Structures',c:4},{n:'Surveying',c:3},{n:'Data Structure',c:3},{n:'Open Elective - I (Psychology)',c:3},{n:'Structural Analysis Sessional-I',c:3},{n:'Design of concrete Structures Sessional',c:3},{n:'Data Structure Sessional',c:3},{n:'Co-curricular Activities - IV',c:0}]
+    },
+    elec: {
+      3: [{n:'Mathematics-III',c:4},{n:'Network Analysis and Synthesis',c:4},{n:'Electrical and Electronics Measurements',c:4},{n:'Electromagnetic Field Theory',c:4},{n:'Analog Electronics',c:4},{n:'Analog Electronics Laboratory',c:3},{n:'Electrical and Electronics Measurements Lab',c:3}],
+      4: [{n:'Power Systems - I',c:4},{n:'Electrical Machines - I',c:4},{n:'Digital Electronics',c:4},{n:'Microprocessor and Microcontroller',c:4},{n:'Fluid and Thermal Engineering',c:3},{n:'Network Analysis and Synthesis Laboratory',c:3},{n:'Fluid and Thermal Engineering Laboratory',c:3}]
+    },
+    subjects:{ 3:[{n:'Subject 1',c:4}], 4:[{n:'Subject 1',c:4}] } 
+  },
+  3: { 
+    sems:[5,6], 
+    mech: {
+      5: [{n:'Machining and Machine Tools',c:4},{n:'IC Engine & Gas Turbine',c:3},{n:'Design of Machine Elements-II',c:4},{n:'Computer Aided Manufacturing & Robotics',c:4},{n:'Depth Elective - 1',c:3},{n:'Hydraulic Machines Laboratory',c:2},{n:'Heat Transfer Laboratory',c:2},{n:'Robotics, AI & Mechatronics Lab',c:2},{n:'Co-curricular Activities - V',c:0}],
+      6: [{n:'Power Generation Technologies',c:3},{n:'Economics and Management Accountancy',c:3},{n:'AI & ML',c:4},{n:'Depth Elective - 2',c:3},{n:'Depth Elective - 3',c:3},{n:'Power Generation Laboratory',c:2},{n:'Machine Design Sessional',c:2},{n:'Manufacturing Laboratory',c:2},{n:'Co-curricular Activities',c:0}]
+    },
+    civil: {
+      5: [{n:'Structural Analysis - II',c:4},{n:'Design of Steel Structures',c:4},{n:'Soil Mechanics',c:3},{n:'Transportation Engineering',c:4},{n:'Open Elective - 2',c:3},{n:'Structural Analysis Sessional-II',c:3},{n:'Design of Steel Structures Sessional',c:3},{n:'Transportation Engg & Soil Mechanics Lab',c:3},{n:'Surveying Lab & Estimation Sessional',c:4},{n:'Co-curricular Activities - V',c:0}],
+      6: [{n:'Economics and Management Accountancy',c:3},{n:'Water Resource Engineering',c:4},{n:'Foundation Engineering',c:3},{n:'Environmental Engineering',c:4},{n:'Depth Elective - 1',c:3},{n:'Depth Elective - 2',c:3},{n:'Environmental Engg Lab & Computational Lab-I',c:3},{n:'Concrete Technology Laboratory',c:3},{n:'Co-curricular Activities - VI',c:0}]
+    },
+    elec: {
+      5: [{n:'Electrical Machines - II',c:4},{n:'Control Systems',c:4},{n:'Power Systems - II',c:4},{n:'Power Electronics',c:4},{n:'Depth Elective - 1',c:3},{n:'Digital Electronics Laboratory',c:3},{n:'Control Systems Laboratory',c:3},{n:'Electrical Machines Laboratory - I',c:3}],
+      6: [{n:'Economics and Management Accountancy',c:3},{n:'High Voltage and Insulation Engineering',c:4},{n:'Artificial Intelligence & Machine Learning',c:5},{n:'Depth Elective - 2',c:3},{n:'Depth Elective - 3',c:3},{n:'Electrical Machines - II Laboratory',c:3},{n:'Power Electronics Laboratory',c:3},{n:'Power System Laboratory',c:3}]
+    },
+    subjects:{ 5:[{n:'Subject 1',c:4}], 6:[{n:'Subject 1',c:4}] } 
+  },
+  4: { 
+    sems:[7, 8], 
+    mech: {
+      7: [{n:'Principle of Management',c:3},{n:'Industrial Engineering & Measurement',c:4},{n:'Depth Elective - 4',c:3},{n:'Depth Elective - 5',c:3},{n:'Open Elective - 1',c:3},{n:'Machine Dynamics Laboratory',c:2},{n:'Engineering Measurement Laboratory',c:2},{n:'Summer Internship and Seminar',c:1},{n:'Project - I',c:1}],
+      8: [{n:'Subject 1',c:4}] 
+    },
+    civil: {
+      7: [{n:'Principles of Management',c:3},{n:'Depth Elective - 3',c:3},{n:'Depth Elective - 4',c:3},{n:'Depth Elective - 5',c:3},{n:'Open Elective - 3',c:3},{n:'Project - 1',c:4},{n:'Structural Engg Lab & Computational Lab-II',c:3},{n:'Vocational Training / Summer Internship',c:2}],
+      8: [{n:'Depth Elective - 6',c:3},{n:'Open Elective - 4',c:3},{n:'Open Elective - 5',c:3},{n:'Project - II',c:15},{n:'Project Seminar',c:0},{n:'Viva Voce',c:0}]
+    },
+    elec: {
+      7: [{n:'Principles of Management',c:3},{n:'Power System Operation and Control',c:3},{n:'Depth Elective - 4',c:3},{n:'Depth Elective - 5',c:3},{n:'Open Elective - 1',c:3},{n:'Microprocessor and Microcontroller Laboratory',c:3},{n:'High Voltage and Insulation Engg Lab',c:3},{n:'Electrical Machine Design Sessional',c:3},{n:'Vocational Training / Summer Internship',c:3},{n:'Project - 1',c:3}],
+      8: [{n:'Project - II',c:15},{n:'Comprehensive Viva',c:0}]
+    },
+    subjects:{ 7:[{n:'Subject 1',c:4}], 8:[{n:'Subject 1',c:4}] } 
+  }
+};
+
+function marksToGrade(m) {
+  if (m >= 90) return { g: 'Ex', p: 10 };
+  if (m >= 80) return { g: 'A', p: 9 };
+  if (m >= 70) return { g: 'B', p: 8 };
+  if (m >= 60) return { g: 'C', p: 7 };
+  if (m >= 50) return { g: 'D', p: 6 };
+  if (m >= 35) return { g: 'P', p: 5 };
+  return { g: 'Supply', p: 0 };
+}
+
+function gradeColor(g) {
+  if (g === 'Ex') return 'background:#dcfce7;color:#16a34a;';
+  if (g === 'A') return 'background:#dbeafe;color:#1d4ed8;';
+  if (g === 'B') return 'background:#e0f2fe;color:#0369a1;';
+  if (g === 'C') return 'background:#fef9c3;color:#a16207;';
+  if (g === 'D') return 'background:#ffedd5;color:#c2410c;';
+  if (g === 'P') return 'background:var(--input-bg);color:var(--text-muted);';
+  if (g === 'Supply') return 'background:#fee2e2;color:#b91c1c;';
+  return 'background:var(--input-bg);color:var(--text-muted);';
+}
+
+let currentYear=null,currentGroup=null,currentBranch=null,currentSem=null;
+function selectYear(y,btn) {
+  currentYear=y;currentGroup=null;currentBranch=null;currentSem=null;
+  document.querySelectorAll('#step-year .sgpa-chip').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  ['step-group','step-branch','step-sem','step-marks'].forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById('sgpaResult').classList.remove('show');
+  if (y===1) document.getElementById('step-group').style.display='flex';
+  else document.getElementById('step-branch').style.display='flex';
+}
+function selectGroup(g,btn) {
+  currentGroup=g;
+  document.querySelectorAll('#step-group .sgpa-chip').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  buildSemChips();
+}
+function selectBranch(b,btn) {
+  currentBranch=b;
+  document.querySelectorAll('#step-branch .sgpa-chip').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  buildSemChips();
+}
+function buildSemChips() {
+  document.getElementById('semChips').innerHTML=sgpaData[currentYear].sems.map(s=>`<button class="sgpa-chip" onclick="selectSem(${s},this)">Semester ${s}</button>`).join('');
+  document.getElementById('step-sem').style.display='flex';
+  document.getElementById('step-marks').style.display='none';
+  document.getElementById('sgpaResult').classList.remove('show');
+  currentSem=null;
+}
+function selectSem(s,btn) {
+  currentSem=s;
+  document.querySelectorAll('#semChips .sgpa-chip').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  buildMarksTable();
+}
+
+function getSubjects() {
+  if (currentYear === 1) return sgpaData[1][currentGroup === 1 ? 'group1' : 'group2'][currentSem];
+  if (sgpaData[currentYear][currentBranch] && sgpaData[currentYear][currentBranch][currentSem]) return sgpaData[currentYear][currentBranch][currentSem];
+  return sgpaData[currentYear].subjects[currentSem];
+}
+
+function buildMarksTable() {
+  const subjects=getSubjects();
+  document.getElementById('marksRows').innerHTML=subjects.map((sub,i)=>`
+    <div class="sgpa-mark-row">
+      <span class="sgpa-subject-name">${sub.n}</span>
+      <span style="font-size:14px;color:var(--text-muted);text-align:center;font-weight:600;">${sub.c===0?'—':sub.c}</span>
+      <input class="sgpa-mark-input" type="number" min="0" max="100" placeholder="0"
+        id="mark-${i}" ${sub.c===0?'disabled style="opacity:0.3;"':''} oninput="updateGrade(${i})" autocomplete="off" />
+      <span class="sgpa-grade-badge" id="grade-${i}">${sub.c===0?'N/A':'—'}</span>
+    </div>`).join('');
+  document.getElementById('step-marks').style.display='flex';
+  document.getElementById('sgpaResult').classList.remove('show');
+}
+function updateGrade(i) {
+  const val=parseFloat(document.getElementById(`mark-${i}`).value);
+  const badge=document.getElementById(`grade-${i}`);
+  if (isNaN(val)||val<0){badge.textContent='—';badge.style='';return;}
+  const {g}=marksToGrade(Math.min(val,100));
+  badge.textContent=g;badge.style=gradeColor(g);
+}
+
+function calcSGPANew() {
+  const subjects=getSubjects();
+  let tc=0, tp=0, incomplete=false;
+  subjects.forEach((sub,i)=>{
+    if(sub.c===0) return; 
+    const val=parseFloat(document.getElementById(`mark-${i}`).value);
+    if(isNaN(val)){ incomplete=true; return; }
+    if(val < 35) return; 
+    const {p} = marksToGrade(Math.min(val,100));
+    tc += sub.c; tp += sub.c * p;
+  });
+  if(incomplete){ showToast('Please enter marks for all subjects!'); return; }
+  const sgpa = tc > 0 ? (tp/tc).toFixed(2) : "0.00";
+  const pct = tc > 0 ? Math.max(0,((sgpa-0.75)*10)).toFixed(2) : "0.00";
+  document.getElementById('sgpaValue').textContent = sgpa + ' / 10';
+  document.getElementById('sgpaPercent').textContent = pct + '%';
+  document.getElementById('sgpaResult').classList.add('show');
+}
+
+function resetSGPA() {
+  currentYear=null;currentGroup=null;currentSem=null;currentBranch=null;
+  document.querySelectorAll('.sgpa-chip').forEach(b=>b.classList.remove('active'));
+  ['step-group','step-branch','step-sem','step-marks'].forEach(id=>document.getElementById(id).style.display='none');
+  document.getElementById('sgpaResult').classList.remove('show');
+}
+
+/* ── CONVERTER ── */
+let gradeScale = 10;
+function setScale(s, btn) {
+  gradeScale = s;
+  document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  convertSGPA();
+}
+function convertSGPA() {
+  const val = parseFloat(document.getElementById('sgpaInput').value);
+  const box = document.getElementById('convResult');
+  if (isNaN(val) || val < 0) { box.style.display = 'none'; return; }
+  let pct;
+  if (gradeScale === 10) pct = ((val - 0.75) * 10).toFixed(2);
+  else pct = ((val / 4) * 100).toFixed(2);
+  document.getElementById('convValue').textContent = pct + '%';
+  box.style.display = 'block';
+}
+
+function switchNocTab(type, btn) {
+  btn.closest('.scale-row').querySelectorAll('.scale-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('noc-vt-wrap').style.display = 'none';
+  document.getElementById('noc-intern-wrap').style.display = 'none';
+  document.getElementById(`noc-${type}-wrap`).style.display = 'block';
+}
+
+/* ── MODAL LOGIC ── */
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) {
+    if(m.id === 'pdfModal') closePdfViewer();
+    else m.classList.remove('open'); 
+  }});
+});
+function toggleBranch() {
+  const semValue = document.getElementById('uploadSem').value;
+  const branchDropdown = document.getElementById('uploadBranch');
+  if (semValue >= 3) branchDropdown.disabled = false;
+  else { branchDropdown.disabled = true; branchDropdown.value = ""; }
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+/* ── GOOGLE FORM SUBMISSION LOGIC ── */
+function submitResourceToGoogle() {
+  const title = document.getElementById('uploadTitle').value.trim();
+  const sem = document.getElementById('uploadSem').value;
+  const branch = document.getElementById('uploadBranch').value;
+  const link = document.getElementById('uploadLink').value.trim();
+
+  if (!title || !sem || !link) {
+    showToast('Please fill in Title, Semester, and Link.');
+    return;
+  }
+
+  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe4mXL2MU79io3bdc4ZnF__bAMAVJsZhZMD4ndp_n40Dsnv0w/formResponse";
+  const formData = new FormData();
+  formData.append("entry.1993931335", link); 
+
+  fetch(googleFormUrl, {
+    method: "POST",
+    mode: "no-cors",
+    body: formData
+  })
+  .then(() => {
+    showToast("Resource submitted successfully!");
+    closeModal('uploadModal');
+    
+    // Clear form
+    document.getElementById('uploadTitle').value = '';
+    document.getElementById('uploadSem').value = '';
+    document.getElementById('uploadBranch').value = '';
+    document.getElementById('uploadBranch').disabled = true;
+    document.getElementById('uploadLink').value = '';
+  })
+  .catch((error) => {
+    console.error("Submission error:", error);
+    showToast("Error submitting resource. Please try again.");
+  });
+}
+</script>
+</body>
+</html>
