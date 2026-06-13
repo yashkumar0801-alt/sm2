@@ -149,7 +149,7 @@ nav {
 /* ── PW STYLE HERO ── */
 .hero {
   max-width: 1200px; margin: 0 auto;
-  padding: 80px 24px 100px;
+  padding: 80px 24px 80px;
   text-align: center;
   display: flex; flex-direction: column; align-items: center;
 }
@@ -164,25 +164,23 @@ nav {
   color: var(--text-muted); font-size: 18px; max-width: 600px; font-weight: 400; margin: 0 auto;
 }
 
-/* ── PW STATS BAR ── */
+/* ── BIG TEXT BANNER ── */
 .pw-stats-container {
-  max-width: 1000px; margin: -60px auto 60px; padding: 0 24px; position: relative; z-index: 10;
+  max-width: 1000px; margin: -20px auto 60px; padding: 0 24px; position: relative; z-index: 10;
 }
-.pw-stats {
-  background: var(--bg-card); border-radius: 16px; box-shadow: var(--shadow);
-  display: flex; justify-content: space-evenly; align-items: center; padding: 24px 12px;
-  border: 1px solid var(--border); flex-wrap: wrap; gap: 16px;
+.big-banner-text {
+  text-align: center;
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: clamp(24px, 4vw, 42px);
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: -1px;
+  margin: 0;
+  text-transform: uppercase;
 }
-.pw-stat-item {
-  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; flex: 1; min-width: 150px;
+.big-banner-text span {
+  color: var(--accent);
 }
-.pw-stat-icon {
-  width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;
-}
-.pw-stat-val { font-size: 20px; font-weight: 700; color: var(--text); }
-.pw-stat-sub { font-size: 13px; color: var(--text-muted); }
-.pw-stat-divider { width: 1px; height: 60px; background: var(--border); }
-@media (max-width: 768px) { .pw-stat-divider { display: none; } }
 
 /* ── PW SECTION HEADERS ── */
 .pw-section { max-width: 1200px; margin: 0 auto; padding: 0 24px 80px; }
@@ -210,8 +208,12 @@ nav {
 .tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ── PW STYLE CARDS ── */
-.resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+/* ── PW STYLE CARDS (4 columns / 2 rows) ── */
+.resource-grid { 
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 24px; 
+}
 .pw-card {
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
   padding: 28px; position: relative; overflow: hidden; display: flex; flex-direction: column;
@@ -226,7 +228,7 @@ nav {
 }
 .pw-card:hover .pw-card-blob { width: 160px; }
 .pw-card-content { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; }
-.pw-card-title { font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 16px; letter-spacing: -0.5px; max-width: 80%; line-height: 1.3; }
+.pw-card-title { font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 16px; letter-spacing: -0.5px; max-width: 90%; line-height: 1.3; }
 .pw-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
 .pw-tag {
   border: 1px solid var(--border); padding: 4px 14px; border-radius: 20px;
@@ -239,11 +241,6 @@ nav {
 .pw-explore span { font-size: 18px; transition: transform 0.2s; }
 .pw-card:hover .pw-explore { color: var(--accent); }
 .pw-card:hover .pw-explore span { transform: translateX(4px); }
-.pw-card-icon {
-  position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
-  font-size: 56px; z-index: 1; transition: transform 0.3s;
-}
-.pw-card:hover .pw-card-icon { transform: translateY(-50%) scale(1.1); }
 
 /* ── UTILITIES WRAPPER ── */
 .utility-wrapper {
@@ -366,10 +363,12 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
 .hidden-tab { display: none !important; }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .resource-grid { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 768px) {
   .nav-actions .nav-btn span { display: none; }
-  .hero { padding: 40px 20px 80px; }
-  .pw-stats { flex-direction: column; gap: 24px; }
+  .hero { padding: 40px 20px 60px; }
   .resource-grid { grid-template-columns: 1fr; }
   .pw-card-blob { width: 100px; }
 }
@@ -410,43 +409,13 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
 <div class="hero" id="homeHero">
   <div class="hero-badge">✦ Official Student Resource Hub</div>
   <h1>Study Smarter,<br><span>NOT HARDER.</span></h1>
-  <p>Everything you need for college life — notes, PYQs, calculators, and formats. Made exclusively for NIT Durgapur students.</p>
+  <p>Everything you need for college life — notes, PYQs, calculators, and formats.</p>
 </div>
 
 <div class="pw-stats-container" id="homeStats">
-  <div class="pw-stats">
-    <div class="pw-stat-item">
-      <div class="pw-stat-icon" style="background:#e0e7ff; color:#3b82f6">📚</div>
-      <div>
-        <div class="pw-stat-val">9 Branches</div>
-        <div class="pw-stat-sub">Complete Syllabus</div>
-      </div>
-    </div>
-    <div class="pw-stat-divider"></div>
-    <div class="pw-stat-item">
-      <div class="pw-stat-icon" style="background:#fce7f3; color:#ec4899">📄</div>
-      <div>
-        <div class="pw-stat-val">500+ Notes</div>
-        <div class="pw-stat-sub">PYQs & Materials</div>
-      </div>
-    </div>
-    <div class="pw-stat-divider"></div>
-    <div class="pw-stat-item">
-      <div class="pw-stat-icon" style="background:#fef3c7; color:#f43f5e">⚡</div>
-      <div>
-        <div class="pw-stat-val">24 x 7</div>
-        <div class="pw-stat-sub">Instant SGPA Calc</div>
-      </div>
-    </div>
-    <div class="pw-stat-divider"></div>
-    <div class="pw-stat-item">
-      <div class="pw-stat-icon" style="background:#dcfce7; color:#16a34a">✔️</div>
-      <div>
-        <div class="pw-stat-val">Verified</div>
-        <div class="pw-stat-sub">Official Formats</div>
-      </div>
-    </div>
-  </div>
+  <h2 class="big-banner-text">
+    MADE EXCLUSIVELY FOR <span>NIT DURGAPUR</span> STUDENTS.
+  </h2>
 </div>
 
 <div class="main-sections view-fade" id="homeView">
@@ -474,192 +443,228 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
       
       <div class="tab-panel active" id="acad-firstyear">
         <div class="resource-grid">
-          <div class="pw-card" onclick="openCategory('Lecture Notes', '📝', 'Comprehensive handwritten and digital notes directly from top students and professors.', 'firstyear')">
+          <div class="pw-card" onclick="openCategory('Lecture Notes', 'Comprehensive handwritten and digital notes directly from top students and professors.', 'firstyear')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">Lecture Notes</div>
               <div class="pw-tags"><span class="pw-tag">Handwritten</span><span class="pw-tag">Digital PDF</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">📝</div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('PYQs', '🕐', 'Past mid-sem and end-sem examination papers to help you understand the question patterns.', 'firstyear')">
+          <div class="pw-card" onclick="openCategory('PYQs', 'Past mid-sem and end-sem examination papers to help you understand the question patterns.', 'firstyear')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">PYQs</div>
               <div class="pw-tags"><span class="pw-tag">Mid-Sem</span><span class="pw-tag">End-Sem</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">🕐</div>
+          </div>
+
+          <div class="pw-card" onclick="openCategory('Syllabus', 'Official syllabus and course structure for your semester.', 'firstyear')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Syllabus</div>
+              <div class="pw-tags"><span class="pw-tag">Official</span><span class="pw-tag">Course Structure</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+
+          <div class="pw-card" onclick="openCategory('Formula/Short Notes', 'Quick revision formulas and short notes for exams.', 'firstyear')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Formula/Short Notes</div>
+              <div class="pw-tags"><span class="pw-tag">Quick Revision</span><span class="pw-tag">Formulas</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Lecture Links on YouTube', '▶️', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'firstyear')">
+          <div class="pw-card" onclick="openCategory('Lecture Links on YouTube', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'firstyear')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">YouTube Links</div>
               <div class="pw-tags"><span class="pw-tag">NPTEL</span><span class="pw-tag">Playlists</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">▶️</div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Assignments', '📌', 'Solved assignments and sheets given in class.', 'firstyear')">
+          <div class="pw-card" onclick="openCategory('Assignments', 'Solved assignments and sheets given in class.', 'firstyear')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">Assignments</div>
               <div class="pw-tags"><span class="pw-tag">Solved Sheets</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">📌</div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Lab Reports', '🧪', 'Reference materials, observation tables, and formatting guides for your practical laboratory sessions.', 'firstyear')">
+          <div class="pw-card" onclick="openCategory('Lab Reports', 'Reference materials, observation tables, and formatting guides for your practical laboratory sessions.', 'firstyear')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">Lab Reports</div>
               <div class="pw-tags"><span class="pw-tag">Observations</span><span class="pw-tag">Formats</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">🧪</div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Books', '📚', 'Recommended textbooks and reference materials for your syllabus.', 'firstyear')">
+          <div class="pw-card" onclick="openCategory('Books', 'Recommended textbooks and reference materials for your syllabus.', 'firstyear')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">Books</div>
               <div class="pw-tags"><span class="pw-tag">Textbooks</span><span class="pw-tag">Reference</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">📚</div>
           </div>
         </div>
       </div>
     
       <div class="tab-panel" id="acad-mech">
         <div class="resource-grid">
-          <div class="pw-card" onclick="openCategory('Lecture Notes', '📝', 'Comprehensive handwritten and digital notes directly from top students and professors.', 'mech')">
+          <div class="pw-card" onclick="openCategory('Lecture Notes', 'Comprehensive handwritten and digital notes directly from top students and professors.', 'mech')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">Lecture Notes</div>
               <div class="pw-tags"><span class="pw-tag">Handwritten</span><span class="pw-tag">Digital PDF</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">📝</div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('PYQs', '🕐', 'Past mid-sem and end-sem examination papers to help you understand the question patterns.', 'mech')">
+          <div class="pw-card" onclick="openCategory('PYQs', 'Past mid-sem and end-sem examination papers to help you understand the question patterns.', 'mech')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">PYQs</div>
               <div class="pw-tags"><span class="pw-tag">Mid-Sem</span><span class="pw-tag">End-Sem</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">🕐</div>
+          </div>
+
+          <div class="pw-card" onclick="openPdfViewer('https://drive.google.com/file/d/18T_RbudBCREW2geoVv8VfyMpF_glfumz/preview', 'Mechanical Engineering Syllabus', 'https://drive.google.com/uc?export=download&id=18T_RbudBCREW2geoVv8VfyMpF_glfumz')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Syllabus</div>
+              <div class="pw-tags"><span class="pw-tag">Official</span><span class="pw-tag">Course Structure</span></div>
+              <div class="pw-explore">View Content <span>→</span></div>
+            </div>
+          </div>
+
+          <div class="pw-card" onclick="openCategory('Formula/Short Notes', 'Quick revision formulas and short notes for exams.', 'mech')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Formula/Short Notes</div>
+              <div class="pw-tags"><span class="pw-tag">Quick Revision</span><span class="pw-tag">Formulas</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Lecture Links on YouTube', '▶️', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'mech')">
+          <div class="pw-card" onclick="openCategory('Lecture Links on YouTube', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'mech')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">YouTube Links</div>
               <div class="pw-tags"><span class="pw-tag">NPTEL</span><span class="pw-tag">Playlists</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">▶️</div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Assignments', '📌', 'Solved assignments and sheets given in class.', 'mech')">
+          <div class="pw-card" onclick="openCategory('Assignments', 'Solved assignments and sheets given in class.', 'mech')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">Assignments</div>
               <div class="pw-tags"><span class="pw-tag">Solved Sheets</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">📌</div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Lab Reports', '🧪', 'Reference materials, observation tables, and formatting guides for your practical laboratory sessions.', 'mech')">
+          <div class="pw-card" onclick="openCategory('Lab Reports', 'Reference materials, observation tables, and formatting guides for your practical laboratory sessions.', 'mech')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">Lab Reports</div>
               <div class="pw-tags"><span class="pw-tag">Observations</span><span class="pw-tag">Formats</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">🧪</div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Books', '📚', 'Recommended textbooks and reference materials for your syllabus.', 'mech')">
+          <div class="pw-card" onclick="openCategory('Books', 'Recommended textbooks and reference materials for your syllabus.', 'mech')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">Books</div>
               <div class="pw-tags"><span class="pw-tag">Textbooks</span><span class="pw-tag">Reference</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">📚</div>
           </div>
         </div>
       </div>
       
       <div class="tab-panel" id="acad-mnc">
         <div class="resource-grid">
-          <div class="pw-card" onclick="openCategory('Lecture Notes', '📝', 'Comprehensive handwritten and digital notes.', 'mnc')">
+          <div class="pw-card" onclick="openCategory('Lecture Notes', 'Comprehensive handwritten and digital notes.', 'mnc')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">Lecture Notes</div>
               <div class="pw-tags"><span class="pw-tag">Handwritten</span><span class="pw-tag">Digital PDF</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">📝</div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('PYQs', '🕐', 'Past mid-sem and end-sem examination papers to help you understand the question patterns.', 'mnc')">
+          <div class="pw-card" onclick="openCategory('PYQs', 'Past mid-sem and end-sem examination papers to help you understand the question patterns.', 'mnc')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">PYQs</div>
               <div class="pw-tags"><span class="pw-tag">Mid-Sem</span><span class="pw-tag">End-Sem</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">🕐</div>
+          </div>
+
+          <div class="pw-card" onclick="openCategory('Syllabus', 'Official syllabus and course structure for your semester.', 'mnc')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Syllabus</div>
+              <div class="pw-tags"><span class="pw-tag">Official</span><span class="pw-tag">Course Structure</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+
+          <div class="pw-card" onclick="openCategory('Formula/Short Notes', 'Quick revision formulas and short notes for exams.', 'mnc')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Formula/Short Notes</div>
+              <div class="pw-tags"><span class="pw-tag">Quick Revision</span><span class="pw-tag">Formulas</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Lecture Links on YouTube', '▶️', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'mnc')">
+          <div class="pw-card" onclick="openCategory('Lecture Links on YouTube', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'mnc')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">YouTube Links</div>
               <div class="pw-tags"><span class="pw-tag">NPTEL</span><span class="pw-tag">Playlists</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">▶️</div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Assignments', '📌', 'Solved assignments and sheets given in class.', 'mnc')">
+          <div class="pw-card" onclick="openCategory('Assignments', 'Solved assignments and sheets given in class.', 'mnc')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">Assignments</div>
               <div class="pw-tags"><span class="pw-tag">Solved Sheets</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">📌</div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Lab Reports', '🧪', 'Reference materials, observation tables, and formatting guides for your practical laboratory sessions.', 'mnc')">
+          <div class="pw-card" onclick="openCategory('Lab Reports', 'Reference materials, observation tables, and formatting guides for your practical laboratory sessions.', 'mnc')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">Lab Reports</div>
               <div class="pw-tags"><span class="pw-tag">Observations</span><span class="pw-tag">Formats</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">🧪</div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Books', '📚', 'Recommended textbooks and reference materials for your syllabus.', 'mnc')">
+          <div class="pw-card" onclick="openCategory('Books', 'Recommended textbooks and reference materials for your syllabus.', 'mnc')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">Books</div>
               <div class="pw-tags"><span class="pw-tag">Textbooks</span><span class="pw-tag">Reference</span></div>
               <div class="pw-explore">Explore Category <span>→</span></div>
             </div>
-            <div class="pw-card-icon">📚</div>
           </div>
         </div>
       </div>
@@ -776,12 +781,12 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
           <div class="download-card" id="noc-vt-wrap">
             <div class="template-header">Vocational Training NOC</div>
             <p class="template-desc">Download the official application format for obtaining a No Objection Certificate (NOC) for Vocational Training programs.</p>
-            <a href="./pdfs/VT Form (For Indian).pdf" download="Vocational_Training_NOC.pdf" class="btn-primary">Download PDF</a>
+            <a href="https://drive.google.com/uc?export=download&id=1fKfFhlyRdb-h5POIz-izHrY7ItO3-TrZ" download class="btn-primary" target="_blank">Download PDF</a>
           </div>
           <div class="download-card" id="noc-intern-wrap" style="display:none;">
             <div class="template-header">Internship NOC</div>
             <p class="template-desc">Download the official application format for obtaining a No Objection Certificate (NOC) for Internship positions.</p>
-            <a href="./pdfs/Format_for_Internship_NIT_Durgapur_Student.pdf" download="Internship_NOC.pdf" class="btn-primary">Download PDF</a>
+            <a href="https://drive.google.com/uc?export=download&id=1vu0-94vULmOcVcmgohjscBxRmOook28-" download class="btn-primary" target="_blank">Download PDF</a>
           </div>
         </div>
 
@@ -789,7 +794,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
           <div class="download-card">
             <div class="template-header">Hostel Stay Extension Format</div>
             <p class="template-desc">Download the official application format for requesting an extension of your hostel stay duration.</p>
-            <a href="./pdfs/hostel stay form.pdf" download="Hostel_Extension.pdf" class="btn-primary">Download PDF</a>
+            <a href="https://drive.google.com/uc?export=download&id=1XI3IvJlrQa1RK2tE4Oyl6L8j-wISFX1d" download class="btn-primary" target="_blank">Download PDF</a>
           </div>
         </div>
         
@@ -797,7 +802,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
           <div class="download-card">
             <div class="template-header">Official CV Format</div>
             <p class="template-desc">Download the official, institute-approved CV/Resume format required for campus placements and internship drives.</p>
-            <a href="./pdfs/CV Format for UG1.pdf" download="CV_Format_UG1.pdf" class="btn-primary">Download Format</a>
+            <a href="https://drive.google.com/uc?export=download&id=1TM9AFSjdkqWr8D0kxtr9E9nffKt4Ak8M" download class="btn-primary" target="_blank">Download Format</a>
           </div>
         </div>
       </div>
@@ -860,7 +865,6 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
     </div>
 
     <div class="pw-section-header" style="margin-bottom: 24px;">
-      <div style="font-size: 48px; margin-bottom:12px;" id="catIcon">📝</div>
       <h2 id="catTitle">Category Title</h2>
       <p id="catDesc">Category Description</p>
     </div>
@@ -982,6 +986,11 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
     <div style="flex: 1; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #fff; position: relative;">
       <iframe id="pdfIframe" style="width: 100%; height: 100%; border: none;" allowfullscreen></iframe>
     </div>
+
+    <div id="pdfModalFooter" style="display: none; margin-top: 16px; text-align: center;">
+      <a id="pdfDownloadBtn" href="#" class="btn-primary" style="padding: 10px 32px; border-radius: 999px;">Download PDF</a>
+    </div>
+
   </div>
 </div>
 
@@ -994,13 +1003,13 @@ function showLocked() { showToast('Coming Soon'); }
    RESOURCE DATA WAREHOUSE
    =========================================================================
 */
-const resourceData = {}; // Purposely left empty so it auto-generates default subjects
+const resourceData = {}; 
 
 /* ── DYNAMIC CATEGORY VIEW LOGIC ── */
 let currentCategoryTitle = '';
 let currentCategoryBranch = '';
 
-function openCategory(title, icon, desc, branch) {
+function openCategory(title, desc, branch) {
   currentCategoryTitle = title;
   currentCategoryBranch = branch;
   
@@ -1012,31 +1021,23 @@ function openCategory(title, icon, desc, branch) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
   document.getElementById('catTitle').textContent = title;
-  document.getElementById('catIcon').textContent = icon;
   document.getElementById('catDesc').textContent = desc;
 
-  // Filter semester tabs based on branch selection
   const semTabs = document.querySelectorAll('#cat-tabs button.acad-tab-btn');
   semTabs.forEach((btn, index) => {
-    // Reset active state
     btn.classList.remove('active');
-    
     if (branch === 'firstyear') {
-      // First Year: show 1 & 2 (index 0, 1), hide 3-8 (index 2-7)
       if (index >= 2) btn.classList.add('hidden-tab');
       else btn.classList.remove('hidden-tab');
     } else {
-      // Other Branches: hide 1 & 2 (index 0, 1), show 3-8 (index 2-7)
       if (index < 2) btn.classList.add('hidden-tab');
       else btn.classList.remove('hidden-tab');
     }
   });
 
-  // Hide the sliding indicator until a tab is clicked
   const indicator = document.getElementById('catIndicator');
   if(indicator) indicator.style.width = '0px';
 
-  // Show a default prompt instead of loading a semester automatically
   const container = document.getElementById('categoryContent');
   container.innerHTML = `<div style="padding: 60px 20px; text-align: center; color: var(--text-muted); font-size: 16px; font-weight:600; background: var(--input-bg); border-radius:16px;">Please select a semester from the tabs above.</div>`;
 }
@@ -1068,55 +1069,55 @@ function switchCatTab(sem, btn) {
   const container = document.getElementById('categoryContent');
   let data = resourceData[currentCategoryTitle] && resourceData[currentCategoryTitle][sem];
 
-  // If no predefined data exists, fallback to placeholder subjects!
   if (!data || data.length === 0) {
     if (currentCategoryBranch === 'mech' && sem === 'sem3') {
       if (currentCategoryTitle === 'Books') {
-        // ACTUAL GOOGLE DRIVE LINKS FOR SEMESTER 3 MECHANICAL
         data = [
-          { icon: '🧱', title: 'Mechanics of Materials - Beer & Johnston', desc: '4th Edition', tag: 'Solid Mechanics', driveUrl: 'https://drive.google.com/file/d/1jEvDlPKgu4btPM0m5PYQOYrvv1yWkr9j/preview' },
-          { icon: '⚙️', title: 'Theory of Machines - S.S. Rattan', desc: '3rd Edition', tag: 'Theory of Machines', driveUrl: 'https://drive.google.com/file/d/1sVkdLLn2ovAKdLXkBpYJBROJ1n30TXqy/preview' },
-          { icon: '🔥', title: 'Engineering Thermodynamics - P.K. Nag', desc: 'Textbook', tag: 'Thermodynamics', driveUrl: 'https://drive.google.com/file/d/1F0i4aKy7wbOWYqsphRCrkVR537sFq1kN/preview' },
-          { icon: '📝', title: 'Engineering Thermodynamics Solutions - P.K. Nag', desc: 'Solved Exercises', tag: 'Solutions', driveUrl: 'https://drive.google.com/file/d/1_DInvPRUkr_CD63fFuw8ulqPyxmP4KBE/preview' },
-          { icon: '💨', title: 'Fundamentals of Gas Dynamics - R.D. Zucker', desc: 'Textbook', tag: 'Fluid Mechanics', driveUrl: 'https://drive.google.com/file/d/1tp2-XPXmj4Xt2b1iRlHqqlOimtLSNifh/preview' },
-          { icon: '📚', title: 'Engineering Subject Reference', desc: 'Additional Book', tag: 'Reference', driveUrl: 'https://drive.google.com/file/d/1GO2rf5eRX8rjMIzFwAI6UUZfnKjAD0Gy/preview' }
+          { title: 'Mechanics of Materials - Beer & Johnston', desc: '4th Edition', tag: 'Solid Mechanics', driveUrl: 'https://drive.google.com/file/d/1jEvDlPKgu4btPM0m5PYQOYrvv1yWkr9j/preview' },
+          { title: 'Theory of Machines - S.S. Rattan', desc: '3rd Edition', tag: 'Theory of Machines', driveUrl: 'https://drive.google.com/file/d/1sVkdLLn2ovAKdLXkBpYJBROJ1n30TXqy/preview' },
+          { title: 'Engineering Thermodynamics - P.K. Nag', desc: 'Textbook', tag: 'Thermodynamics', driveUrl: 'https://drive.google.com/file/d/1F0i4aKy7wbOWYqsphRCrkVR537sFq1kN/preview' },
+          { title: 'Engineering Thermodynamics Solutions - P.K. Nag', desc: 'Solved Exercises', tag: 'Solutions', driveUrl: 'https://drive.google.com/file/d/1_DInvPRUkr_CD63fFuw8ulqPyxmP4KBE/preview' },
+          { title: 'Fundamentals of Gas Dynamics - R.D. Zucker', desc: 'Textbook', tag: 'Fluid Mechanics', driveUrl: 'https://drive.google.com/file/d/1tp2-XPXmj4Xt2b1iRlHqqlOimtLSNifh/preview' },
+          { title: 'Engineering Subject Reference', desc: 'Additional Book', tag: 'Reference', driveUrl: 'https://drive.google.com/file/d/1GO2rf5eRX8rjMIzFwAI6UUZfnKjAD0Gy/preview' }
         ];
       } else if (currentCategoryTitle !== 'Lab Reports') {
         data = [
-          { icon: '🧮', title: 'Mathematics 3 (MAC 331)', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
-          { icon: '🧱', title: 'Solid Mechanics (MEC 301)', desc: 'Previous year papers and solutions.', tag: 'Subject' },
-          { icon: '⚙️', title: 'Theory of Machine and Mechanics (MEC 302)', desc: 'Video lectures and reference links.', tag: 'Subject' },
-          { icon: '💧', title: 'Fluid Mechanics (MEC 303)', desc: 'Assignments and lab manuals.', tag: 'Subject' },
-          { icon: '🔥', title: 'Engineering Thermodynamics (MEC 304)', desc: 'Extra study materials.', tag: 'Subject' }
+          { title: 'Mathematics 3 (MAC 331)', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
+          { title: 'Solid Mechanics (MEC 301)', desc: 'Previous year papers and solutions.', tag: 'Subject' },
+          { title: 'Theory of Machine and Mechanics (MEC 302)', desc: 'Video lectures and reference links.', tag: 'Subject' },
+          { title: 'Fluid Mechanics (MEC 303)', desc: 'Assignments and lab manuals.', tag: 'Subject' },
+          { title: 'Engineering Thermodynamics (MEC 304)', desc: 'Extra study materials.', tag: 'Subject' }
         ];
       }
-    } else if (currentCategoryBranch === 'mech' && sem === 'sem4' && currentCategoryTitle !== 'Lab Reports' && currentCategoryTitle !== 'Books') {
-      data = [
-        { icon: '⚙️', title: 'Design of Machine Elements - 1 (MEC 401)', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
-        { icon: '🏭', title: 'Casting, Forming and Welding (MEC 402)', desc: 'Previous year papers and solutions.', tag: 'Subject' },
-        { icon: '🌡️', title: 'Heat and Mass Transfer (MEC 403)', desc: 'Video lectures and reference links.', tag: 'Subject' },
-        { icon: '🏎️', title: 'Dynamics of Machine (MEC 404)', desc: 'Assignments and lab manuals.', tag: 'Subject' },
-        { icon: '🌊', title: 'Fluid Machines (MEC 405)', desc: 'Extra study materials.', tag: 'Subject' }
-      ];
-    } 
+    } else if (currentCategoryBranch === 'mech' && sem === 'sem4') {
+      if (currentCategoryTitle === 'Books') {
+        data = [
+          { title: 'Design of Machine Elements by McGraw Hill', desc: 'Mechanical Engineering', tag: 'Textbook', driveUrl: 'https://drive.google.com/file/d/1sLrHjiQVI2lJOX_RcywFqbeeTKbzCKfT/preview' }
+        ];
+      } else if (currentCategoryTitle !== 'Lab Reports') {
+        data = [
+          { title: 'Design of Machine Elements - 1 (MEC 401)', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
+          { title: 'Casting, Forming and Welding (MEC 402)', desc: 'Previous year papers and solutions.', tag: 'Subject' },
+          { title: 'Heat and Mass Transfer (MEC 403)', desc: 'Video lectures and reference links.', tag: 'Subject' },
+          { title: 'Dynamics of Machine (MEC 404)', desc: 'Assignments and lab manuals.', tag: 'Subject' },
+          { title: 'Fluid Machines (MEC 405)', desc: 'Extra study materials.', tag: 'Subject' }
+        ];
+      }
+    }
     
-    // Default fallback if no special logic matches
     if (!data) {
       data = [
-        { icon: '📘', title: 'Subject 1', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
-        { icon: '📗', title: 'Subject 2', desc: 'Previous year papers and solutions.', tag: 'Subject' },
-        { icon: '📙', title: 'Subject 3', desc: 'Video lectures and reference links.', tag: 'Subject' },
-        { icon: '📕', title: 'Subject 4', desc: 'Assignments and lab manuals.', tag: 'Subject' },
-        { icon: '📓', title: 'Subject 5', desc: 'Extra study materials.', tag: 'Subject' }
+        { title: 'Subject 1', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
+        { title: 'Subject 2', desc: 'Previous year papers and solutions.', tag: 'Subject' },
+        { title: 'Subject 3', desc: 'Video lectures and reference links.', tag: 'Subject' },
+        { title: 'Subject 4', desc: 'Assignments and lab manuals.', tag: 'Subject' },
+        { title: 'Subject 5', desc: 'Extra study materials.', tag: 'Subject' }
       ];
     }
   }
 
   container.innerHTML = '<div class="resource-grid">' + data.map(item => {
-    // Escape single quotes for HTML attributes
     const safeTitle = item.title.replace(/'/g, "\\'");
-    
-    // Check if it's a Drive URL or local File
     let clickAction = "showToast('Content coming soon!')";
     if (item.driveUrl) {
       clickAction = `openPdfViewer('${item.driveUrl}', '${safeTitle}')`;
@@ -1135,28 +1136,36 @@ function switchCatTab(sem, btn) {
         </div>
         <div class="pw-explore">${(item.file || item.driveUrl) ? 'View Book' : 'View Content'} <span>→</span></div>
       </div>
-      <div class="pw-card-icon">${item.icon}</div>
     </div>
   `}).join('') + '</div>';
 }
 
-/* ── PDF VIEWER LOGIC ── */
-function openPdfViewer(url, documentTitle) {
+/* ── PDF VIEWER LOGIC (UPDATED WITH DOWNLOAD OPTION) ── */
+function openPdfViewer(url, documentTitle, downloadUrl) {
   const iframe = document.getElementById('pdfIframe');
   const titleEl = document.getElementById('pdfModalTitle');
+  const footer = document.getElementById('pdfModalFooter');
+  const downloadBtn = document.getElementById('pdfDownloadBtn');
   
   titleEl.textContent = documentTitle || 'Document Viewer';
   iframe.src = url;
+
+  // Show or hide the download button depending on if a downloadUrl was provided
+  if (downloadUrl) {
+    footer.style.display = 'block';
+    downloadBtn.href = downloadUrl;
+  } else {
+    footer.style.display = 'none';
+  }
+
   openModal('pdfModal');
 }
 
 function closePdfViewer() {
   closeModal('pdfModal');
-  // Exit fullscreen if it's open
   if (document.fullscreenElement) {
     document.exitFullscreen();
   }
-  // Clear the iframe source slightly after closing so it doesn't stay loaded in the background
   setTimeout(() => {
     document.getElementById('pdfIframe').src = '';
   }, 300);
@@ -1164,22 +1173,21 @@ function closePdfViewer() {
 
 function toggleFullScreen() {
   const doc = window.document;
-  const docEl = document.getElementById('pdfModalBox'); // Make the whole modal fullscreen
+  const docEl = document.getElementById('pdfModalBox'); 
 
   const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
   const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
 
   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
     requestFullScreen.call(docEl);
-    document.getElementById('fsBtn').innerHTML = '🗗'; // Change icon to windowed mode
+    document.getElementById('fsBtn').innerHTML = '🗗'; 
   }
   else {
     cancelFullScreen.call(doc);
-    document.getElementById('fsBtn').innerHTML = '⛶'; // Change back
+    document.getElementById('fsBtn').innerHTML = '⛶'; 
   }
 }
 
-// Listen for escape key exits to reset the full screen icon
 document.addEventListener('fullscreenchange', exitHandler);
 document.addEventListener('webkitfullscreenchange', exitHandler);
 document.addEventListener('mozfullscreenchange', exitHandler);
@@ -1190,6 +1198,42 @@ function exitHandler() {
         const fsBtn = document.getElementById('fsBtn');
         if(fsBtn) fsBtn.innerHTML = '⛶';
     }
+}
+
+function submitResourceToGoogle() {
+  const title = document.getElementById('uploadTitle').value.trim();
+  const sem = document.getElementById('uploadSem').value;
+  const branch = document.getElementById('uploadBranch').value;
+  const link = document.getElementById('uploadLink').value.trim();
+
+  if (!title || !sem || !link) {
+    showToast('Please fill in Title, Semester, and Link.');
+    return;
+  }
+
+  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe4mXL2MU79io3bdc4ZnF__bAMAVJsZhZMD4ndp_n40Dsnv0w/formResponse";
+  const formData = new FormData();
+  formData.append("entry.1993931335", link); 
+
+  fetch(googleFormUrl, {
+    method: "POST",
+    mode: "no-cors",
+    body: formData
+  })
+  .then(() => {
+    showToast("Resource submitted successfully!");
+    closeModal('uploadModal');
+    
+    document.getElementById('uploadTitle').value = '';
+    document.getElementById('uploadSem').value = '';
+    document.getElementById('uploadBranch').value = '';
+    document.getElementById('uploadBranch').disabled = true;
+    document.getElementById('uploadLink').value = '';
+  })
+  .catch((error) => {
+    console.error("Submission error:", error);
+    showToast("Error submitting resource. Please try again.");
+  });
 }
 
 /* ── THEME ── */
@@ -1461,44 +1505,6 @@ function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2800);
-}
-
-/* ── GOOGLE FORM SUBMISSION LOGIC ── */
-function submitResourceToGoogle() {
-  const title = document.getElementById('uploadTitle').value.trim();
-  const sem = document.getElementById('uploadSem').value;
-  const branch = document.getElementById('uploadBranch').value;
-  const link = document.getElementById('uploadLink').value.trim();
-
-  if (!title || !sem || !link) {
-    showToast('Please fill in Title, Semester, and Link.');
-    return;
-  }
-
-  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSe4mXL2MU79io3bdc4ZnF__bAMAVJsZhZMD4ndp_n40Dsnv0w/formResponse";
-  const formData = new FormData();
-  formData.append("entry.1993931335", link); 
-
-  fetch(googleFormUrl, {
-    method: "POST",
-    mode: "no-cors",
-    body: formData
-  })
-  .then(() => {
-    showToast("Resource submitted successfully!");
-    closeModal('uploadModal');
-    
-    // Clear form
-    document.getElementById('uploadTitle').value = '';
-    document.getElementById('uploadSem').value = '';
-    document.getElementById('uploadBranch').value = '';
-    document.getElementById('uploadBranch').disabled = true;
-    document.getElementById('uploadLink').value = '';
-  })
-  .catch((error) => {
-    console.error("Submission error:", error);
-    showToast("Error submitting resource. Please try again.");
-  });
 }
 </script>
 </body>
