@@ -350,7 +350,8 @@ nav {
 
 /* ── TOAST ── */
 .toast {
-  position: fixed; bottom: 36px; right: 36px; z-index: 300; background: var(--section-head); color: #fff;
+  position: fixed; bottom: 36px; right: 36px; z-index: 300; 
+  background: var(--section-head); color: var(--bg); 
   padding: 16px 24px; border-radius: 12px; font-size: 15px; font-weight: 600; display: none;
   animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
@@ -362,10 +363,14 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
 /* ── UTILITY CLASS FOR TABS ── */
 .hidden-tab { display: none !important; }
 
+/* ── FULL SCREEN VIDEO CSS LOGIC ── */
+#videoModalBox:fullscreen #videoModalFooter { display: none !important; }
+#videoModalBox:-webkit-full-screen #videoModalFooter { display: none !important; }
+#videoModalBox:-moz-full-screen #videoModalFooter { display: none !important; }
+#videoModalBox:-ms-fullscreen #videoModalFooter { display: none !important; }
+
 /* ── RESPONSIVE ── */
-@media (max-width: 1100px) {
-  .resource-grid { grid-template-columns: repeat(2, 1fr); }
-}
+@media (max-width: 1100px) { .resource-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 768px) {
   .nav-actions .nav-btn span { display: none; }
   .hero { padding: 40px 20px 60px; }
@@ -378,7 +383,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
 
 <nav>
   <div class="nav-inner">
-    <a class="logo" href="#" onclick="closeCategoryView()">
+    <a class="logo" href="#" onclick="goHome()">
       <span class="logo-stu">Study</span><span class="logo-hub">Mantra</span>
       <span class="logo-sub">NIT Durgapur</span>
     </a>
@@ -419,6 +424,18 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
 </div>
 
 <div class="main-sections view-fade" id="homeView">
+
+  <div class="pw-section" style="padding-bottom: 40px; padding-top: 10px;">
+    <div style="background: var(--pw-blob); border: 1px solid var(--accent); border-radius: 16px; padding: 40px 32px; text-align: center; max-width: 900px; margin: 0 auto; box-shadow: 0 8px 20px rgba(22,163,74,0.1);">
+      <h2 style="font-size: 26px; font-weight: 800; color: var(--text); margin-bottom: 16px; letter-spacing: -0.5px;">🤝 Help Us Build the Community</h2>
+      <p style="font-size: 16px; color: var(--text-muted); margin-bottom: 32px; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto;">
+        StudyMantra is a student-driven initiative, and we rely on your collaborative spirit to grow. We are actively expanding our database and need your support. By contributing your class notes, assignments, and study materials, you directly empower your peers and future batches to succeed.
+      </p>
+      <button class="btn-primary" onclick="openModal('uploadModal')" style="font-size: 16px; padding: 12px 32px; border-radius: 999px;">
+        Upload Your Notes
+      </button>
+    </div>
+  </div>
 
   <div class="pw-section" id="academic-resources">
     <div class="pw-section-header">
@@ -479,7 +496,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
             </div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Lecture Links on YouTube', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'firstyear')">
+          <div class="pw-card" onclick="openCategory('YouTube Links', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'firstyear')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">YouTube Links</div>
@@ -555,7 +572,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
             </div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Lecture Links on YouTube', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'mech')">
+          <div class="pw-card" onclick="openCategory('YouTube Links', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'mech')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">YouTube Links</div>
@@ -631,7 +648,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
             </div>
           </div>
           
-          <div class="pw-card" onclick="openCategory('Lecture Links on YouTube', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'mnc')">
+          <div class="pw-card" onclick="openCategory('YouTube Links', 'Curated YouTube playlists and NPTEL links covering the entire semester syllabus.', 'mnc')">
             <div class="pw-card-blob"></div>
             <div class="pw-card-content">
               <div class="pw-card-title">YouTube Links</div>
@@ -887,6 +904,59 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
     </div>
 
   </div>
+</div> <div class="main-sections view-fade" id="subjectView" style="display: none;">
+  <div class="pw-section">
+    
+    <div style="position: sticky; top: 100px; z-index: 90; height: 0;">
+      <button class="nav-btn" onclick="closeSubjectView()" style="position: absolute; left: 0; top: 15px; background: var(--bg-card); box-shadow: 0 4px 12px rgba(0,0,0,0.1);">← Back</button>
+    </div>
+
+    <div class="pw-section-header" style="margin-bottom: 24px;">
+      <h2 id="subjTitle">Subject Title</h2>
+      <p id="subjDesc">Explore topic-wise materials and lectures</p>
+    </div>
+
+    <div class="resource-grid">
+      
+      <div class="pw-card" onclick="openModal('videoSelectModal')">
+        <div class="pw-card-blob"></div>
+        <div class="pw-card-content">
+          <div class="pw-card-title">Gyroscope</div>
+          <div class="pw-tags"><span class="pw-tag">Module 1</span><span class="pw-tag">Video Lectures</span></div>
+          <div class="pw-explore">Select Video <span>→</span></div>
+        </div>
+      </div>
+      
+      <div class="pw-card" onclick="showToast('Governor materials coming soon.')">
+        <div class="pw-card-blob"></div>
+        <div class="pw-card-content">
+          <div class="pw-card-title">Governors</div>
+          <div class="pw-tags"><span class="pw-tag">Module 2</span></div>
+          <div class="pw-explore">Coming Soon <span>→</span></div>
+        </div>
+      </div>
+      
+      <div class="pw-card" onclick="showToast('Cams & Followers materials coming soon.')">
+        <div class="pw-card-blob"></div>
+        <div class="pw-card-content">
+          <div class="pw-card-title">Cams & Followers</div>
+          <div class="pw-tags"><span class="pw-tag">Module 3</span></div>
+          <div class="pw-explore">Coming Soon <span>→</span></div>
+        </div>
+      </div>
+      
+      <div class="pw-card" onclick="showToast('Balancing materials coming soon.')">
+        <div class="pw-card-blob"></div>
+        <div class="pw-card-content">
+          <div class="pw-card-title">Balancing</div>
+          <div class="pw-tags"><span class="pw-tag">Module 4</span></div>
+          <div class="pw-explore">Coming Soon <span>→</span></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 </div> <footer>
   <strong>StudyMantra</strong> &nbsp;|&nbsp; Built with ♥ for NIT Durgapur students
 </footer>
@@ -979,7 +1049,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
   <div class="modal-box" id="pdfModalBox" style="width: 90vw; height: 90vh; max-width: 1200px; display: flex; flex-direction: column; padding: 20px;">
     
     <button class="modal-close" onclick="closePdfViewer()" style="z-index: 10;">✕</button>
-    <button class="modal-close" onclick="toggleFullScreen()" id="fsBtn" style="right: 60px; z-index: 10; font-size: 14px;">⛶</button>
+    <button class="modal-close" onclick="toggleFullScreen('pdfModalBox', 'pdfFsBtn')" id="pdfFsBtn" style="right: 60px; z-index: 10; font-size: 14px;">⛶</button>
     
     <div class="modal-title" id="pdfModalTitle" style="margin-bottom: 12px; font-size: 20px; padding-right: 80px;">Document Viewer</div>
     
@@ -989,6 +1059,40 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
 
     <div id="pdfModalFooter" style="display: none; margin-top: 16px; text-align: center;">
       <a id="pdfDownloadBtn" href="#" class="btn-primary" style="padding: 10px 32px; border-radius: 999px;">Download PDF</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal-overlay" id="videoSelectModal">
+  <div class="modal-box" style="max-width: 400px;">
+    <button class="modal-close" onclick="closeModal('videoSelectModal')">✕</button>
+    <div class="modal-title">Select Lecture</div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <button class="btn-secondary" style="text-align:left; display: flex; justify-content: space-between; align-items: center;" onclick="playYoutubeVideo('J8ySY5_OaW0', 'Gyroscope 01')">
+        <span>Gyroscope 01</span> <span style="color:var(--accent);">▶</span>
+      </button>
+      <button class="btn-secondary" style="text-align:left; display: flex; justify-content: space-between; align-items: center;" onclick="playYoutubeVideo('LoZD-akizjA', 'Gyroscope 02')">
+        <span>Gyroscope 02</span> <span style="color:var(--accent);">▶</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="videoModal">
+  <div class="modal-box" id="videoModalBox" style="width: 90vw; height: 90vh; max-width: 1200px; display: flex; flex-direction: column; padding: 20px; background: #000; border-color: #333;">
+    
+    <button class="modal-close" onclick="closeVideoViewer()" style="z-index: 10; background: rgba(255,255,255,0.1); color: #fff;">✕</button>
+    <button class="modal-close" onclick="toggleFullScreen('videoModalBox', 'videoFsBtn')" id="videoFsBtn" style="right: 60px; z-index: 10; font-size: 14px; background: rgba(255,255,255,0.1); color: #fff;">⛶</button>
+    
+    <div class="modal-title" id="videoModalTitle" style="margin-bottom: 12px; font-size: 20px; padding-right: 80px; color: #fff;">Video Player</div>
+    
+    <div style="flex: 1; border-radius: 12px; overflow: hidden; background: #000; position: relative;">
+      <iframe id="videoIframe" style="width: 100%; height: 100%; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div id="videoModalFooter" style="margin-top: 16px; text-align: center;">
+      <a id="youtubeLinkBtn" href="#" target="_blank" class="btn-secondary" style="padding: 10px 32px; border-radius: 999px; border-color: #333; color: #ccc;">View on YouTube</a>
     </div>
 
   </div>
@@ -1005,6 +1109,16 @@ function showLocked() { showToast('Coming Soon'); }
 */
 const resourceData = {}; 
 
+/* ── NAVIGATION LOGIC ── */
+function goHome() {
+  document.getElementById('categoryView').style.display = 'none';
+  document.getElementById('subjectView').style.display = 'none';
+  document.getElementById('homeHero').style.display = 'flex';
+  document.getElementById('homeStats').style.display = 'block';
+  document.getElementById('homeView').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 /* ── DYNAMIC CATEGORY VIEW LOGIC ── */
 let currentCategoryTitle = '';
 let currentCategoryBranch = '';
@@ -1016,6 +1130,7 @@ function openCategory(title, desc, branch) {
   document.getElementById('homeHero').style.display = 'none';
   document.getElementById('homeStats').style.display = 'none';
   document.getElementById('homeView').style.display = 'none';
+  document.getElementById('subjectView').style.display = 'none';
   
   document.getElementById('categoryView').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1043,12 +1158,7 @@ function openCategory(title, desc, branch) {
 }
 
 function closeCategoryView() {
-  document.getElementById('categoryView').style.display = 'none';
-  
-  document.getElementById('homeHero').style.display = 'flex';
-  document.getElementById('homeStats').style.display = 'block';
-  document.getElementById('homeView').style.display = 'block';
-  
+  goHome();
   setTimeout(() => {
     const target = document.getElementById('academic-resources');
     if(target) {
@@ -1080,6 +1190,14 @@ function switchCatTab(sem, btn) {
           { title: 'Fundamentals of Gas Dynamics - R.D. Zucker', desc: 'Textbook', tag: 'Fluid Mechanics', driveUrl: 'https://drive.google.com/file/d/1tp2-XPXmj4Xt2b1iRlHqqlOimtLSNifh/preview' },
           { title: 'Engineering Subject Reference', desc: 'Additional Book', tag: 'Reference', driveUrl: 'https://drive.google.com/file/d/1GO2rf5eRX8rjMIzFwAI6UUZfnKjAD0Gy/preview' }
         ];
+      } else if (currentCategoryTitle === 'Formula/Short Notes') {
+        data = [
+          { title: 'Mathematics 3 (MAC 331)', desc: 'Quick formulas and cheat sheets.', tag: 'Formulas' },
+          { title: 'Solid Mechanics (MEC 301)', desc: 'Complete short notes and formulas.', tag: 'Short Notes', driveUrl: 'https://drive.google.com/file/d/1FL9Q-CB4B2AbQN9YVkItS7mJUZmP5rV8/preview' },
+          { title: 'Theory of Machine and Mechanics (MEC 302)', desc: 'Quick formulas and cheat sheets.', tag: 'Formulas' },
+          { title: 'Fluid Mechanics (MEC 303)', desc: 'Quick formulas and cheat sheets.', tag: 'Formulas' },
+          { title: 'Engineering Thermodynamics (MEC 304)', desc: 'Quick formulas and cheat sheets.', tag: 'Formulas' }
+        ];
       } else if (currentCategoryTitle !== 'Lab Reports') {
         data = [
           { title: 'Mathematics 3 (MAC 331)', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
@@ -1099,30 +1217,52 @@ function switchCatTab(sem, btn) {
           { title: 'Design of Machine Elements - 1 (MEC 401)', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
           { title: 'Casting, Forming and Welding (MEC 402)', desc: 'Previous year papers and solutions.', tag: 'Subject' },
           { title: 'Heat and Mass Transfer (MEC 403)', desc: 'Video lectures and reference links.', tag: 'Subject' },
-          { title: 'Dynamics of Machine (MEC 404)', desc: 'Assignments and lab manuals.', tag: 'Subject' },
+          { title: 'Dynamics of Machine (MEC 404)', desc: 'Topic-wise modules and resources.', tag: 'Subject', isSubjectPage: true },
           { title: 'Fluid Machines (MEC 405)', desc: 'Extra study materials.', tag: 'Subject' }
         ];
       }
     }
     
     if (!data) {
-      data = [
-        { title: 'Subject 1', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
-        { title: 'Subject 2', desc: 'Previous year papers and solutions.', tag: 'Subject' },
-        { title: 'Subject 3', desc: 'Video lectures and reference links.', tag: 'Subject' },
-        { title: 'Subject 4', desc: 'Assignments and lab manuals.', tag: 'Subject' },
-        { title: 'Subject 5', desc: 'Extra study materials.', tag: 'Subject' }
-      ];
+      if (currentCategoryTitle === 'YouTube Links') {
+        data = [
+          { title: 'Subject 1', desc: 'Complete YouTube Playlist and Video Lectures.', tag: 'Playlist' },
+          { title: 'Subject 2', desc: 'NPTEL Video Lectures and crash courses.', tag: 'NPTEL' },
+          { title: 'Subject 3', desc: 'Chapter-wise video explanations.', tag: 'YouTube' },
+          { title: 'Subject 4', desc: 'Important numericals solved on video.', tag: 'Tutorials' },
+          { title: 'Subject 5', desc: 'Extra video study materials and guides.', tag: 'Playlist' }
+        ];
+      } else {
+        data = [
+          { title: 'Subject 1', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
+          { title: 'Subject 2', desc: 'Previous year papers and solutions.', tag: 'Subject' },
+          { title: 'Subject 3', desc: 'Video lectures and reference links.', tag: 'Subject' },
+          { title: 'Subject 4', desc: 'Assignments and lab manuals.', tag: 'Subject' },
+          { title: 'Subject 5', desc: 'Extra study materials.', tag: 'Subject' }
+        ];
+      }
     }
   }
 
   container.innerHTML = '<div class="resource-grid">' + data.map(item => {
     const safeTitle = item.title.replace(/'/g, "\\'");
     let clickAction = "showToast('Content coming soon!')";
-    if (item.driveUrl) {
+    let exploreText = 'View Content';
+
+    if (item.isSubjectPage) {
+      clickAction = `openSubjectView('${safeTitle}', 'Explore topic-wise materials and lectures')`;
+    } else if (item.driveUrl) {
       clickAction = `openPdfViewer('${item.driveUrl}', '${safeTitle}')`;
     } else if (item.file) {
       clickAction = `openPdfViewer('./pdfs/${item.file.replace(/'/g, "\\'")}', '${safeTitle}')`;
+    }
+
+    if (currentCategoryTitle === 'YouTube Links') {
+      exploreText = 'Watch Videos';
+    } else if (currentCategoryTitle === 'Books') {
+      exploreText = 'View Book';
+    } else if (item.driveUrl || item.file || item.isSubjectPage) {
+      exploreText = 'View Content';
     }
     
     return `
@@ -1134,13 +1274,29 @@ function switchCatTab(sem, btn) {
           <span class="pw-tag">${item.tag || 'Resource'}</span>
           <span class="pw-tag" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;">${item.desc || '...'}</span>
         </div>
-        <div class="pw-explore">${(item.file || item.driveUrl) ? 'View Book' : 'View Content'} <span>→</span></div>
+        <div class="pw-explore">${exploreText} <span>→</span></div>
       </div>
     </div>
   `}).join('') + '</div>';
 }
 
-/* ── PDF VIEWER LOGIC (UPDATED WITH DOWNLOAD OPTION) ── */
+/* ── DYNAMIC SUBJECT VIEW LOGIC ── */
+function openSubjectView(title, desc) {
+  document.getElementById('categoryView').style.display = 'none';
+  document.getElementById('subjectView').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  document.getElementById('subjTitle').textContent = title;
+  if(desc) document.getElementById('subjDesc').textContent = desc;
+}
+
+function closeSubjectView() {
+  document.getElementById('subjectView').style.display = 'none';
+  document.getElementById('categoryView').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── PDF VIEWER LOGIC ── */
 function openPdfViewer(url, documentTitle, downloadUrl) {
   const iframe = document.getElementById('pdfIframe');
   const titleEl = document.getElementById('pdfModalTitle');
@@ -1150,7 +1306,6 @@ function openPdfViewer(url, documentTitle, downloadUrl) {
   titleEl.textContent = documentTitle || 'Document Viewer';
   iframe.src = url;
 
-  // Show or hide the download button depending on if a downloadUrl was provided
   if (downloadUrl) {
     footer.style.display = 'block';
     downloadBtn.href = downloadUrl;
@@ -1163,28 +1318,46 @@ function openPdfViewer(url, documentTitle, downloadUrl) {
 
 function closePdfViewer() {
   closeModal('pdfModal');
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-  }
-  setTimeout(() => {
-    document.getElementById('pdfIframe').src = '';
-  }, 300);
+  if (document.fullscreenElement) { document.exitFullscreen(); }
+  setTimeout(() => { document.getElementById('pdfIframe').src = ''; }, 300);
 }
 
-function toggleFullScreen() {
+/* ── YOUTUBE VIDEO PLAYER LOGIC ── */
+function playYoutubeVideo(videoId, title) {
+  closeModal('videoSelectModal'); 
+  
+  const iframe = document.getElementById('videoIframe');
+  const titleEl = document.getElementById('videoModalTitle');
+  const ytLink = document.getElementById('youtubeLinkBtn');
+  
+  titleEl.textContent = title || 'Video Player';
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  ytLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+  
+  openModal('videoModal');
+}
+
+function closeVideoViewer() {
+  closeModal('videoModal');
+  if (document.fullscreenElement) { document.exitFullscreen(); }
+  setTimeout(() => { document.getElementById('videoIframe').src = ''; }, 300);
+}
+
+/* ── REUSABLE FULLSCREEN LOGIC ── */
+function toggleFullScreen(modalBoxId, btnId) {
   const doc = window.document;
-  const docEl = document.getElementById('pdfModalBox'); 
+  const docEl = document.getElementById(modalBoxId); 
 
   const requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
   const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
 
   if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
     requestFullScreen.call(docEl);
-    document.getElementById('fsBtn').innerHTML = '🗗'; 
+    document.getElementById(btnId).innerHTML = '🗗'; 
   }
   else {
     cancelFullScreen.call(doc);
-    document.getElementById('fsBtn').innerHTML = '⛶'; 
+    document.getElementById(btnId).innerHTML = '⛶'; 
   }
 }
 
@@ -1195,8 +1368,10 @@ document.addEventListener('MSFullscreenChange', exitHandler);
 
 function exitHandler() {
     if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-        const fsBtn = document.getElementById('fsBtn');
-        if(fsBtn) fsBtn.innerHTML = '⛶';
+        const pdfBtn = document.getElementById('pdfFsBtn');
+        const vidBtn = document.getElementById('videoFsBtn');
+        if(pdfBtn) pdfBtn.innerHTML = '⛶';
+        if(vidBtn) vidBtn.innerHTML = '⛶';
     }
 }
 
@@ -1247,7 +1422,9 @@ function toggleTheme() {
 
 /* ── TABS ── */
 function moveIndicator(section, btn) {
-  const indicatorId = section === 'acad' ? 'acadIndicator' : section === 'util' ? 'utilIndicator' : section === 'cat' ? 'catIndicator' : null;
+  const indicatorId = section === 'acad' ? 'acadIndicator' : 
+                      section === 'util' ? 'utilIndicator' : 
+                      section === 'cat' ? 'catIndicator' : null;
   if (!indicatorId) return;
   const indicator = document.getElementById(indicatorId);
   const row = btn.closest('.acad-tabs-row');
@@ -1492,6 +1669,7 @@ function closeModal(id) { document.getElementById(id).classList.remove('open'); 
 document.querySelectorAll('.modal-overlay').forEach(m => {
   m.addEventListener('click', e => { if (e.target === m) {
     if(m.id === 'pdfModal') closePdfViewer();
+    else if(m.id === 'videoModal') closeVideoViewer();
     else m.classList.remove('open'); 
   }});
 });
