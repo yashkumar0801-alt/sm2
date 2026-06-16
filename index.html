@@ -252,6 +252,11 @@ nav {
 .acad-tab-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 .acad-tab-btn.locked { opacity: 0.5; cursor: not-allowed; }
 
+/* Mobile Utils Dropdown (Hidden on Desktop) */
+.mobile-util-dropdown {
+  display: none;
+}
+
 /* ── TAB CONTENT ── */
 .tab-panels { padding: 0; }
 .tab-panel { display: none; }
@@ -466,9 +471,9 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
   @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
   .nav-menu .nav-btn { width: 100%; justify-content: center; padding: 12px 18px; }
 
-  /* 🔴 MOBILE MAGIC #1: Toggle Theme Buttons */
-  .desktop-theme { display: none !important; } /* Hide Pill on Mobile */
-  .mobile-theme { display: flex !important; }  /* Show Square Push Button on Mobile */
+  /* Toggle Theme Buttons */
+  .desktop-theme { display: none !important; } 
+  .mobile-theme { display: flex !important; }  
   .theme-push-btn { width: 34px; height: 34px; font-size: 16px; margin-left: 4px; }
 
   /* Hero section padding */
@@ -490,20 +495,87 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
 
   /* Swipeable Edge-to-Edge Tabs (All tab rows) */
   .acad-tabs-row, .sgpa-chip-row {
-    flex-wrap: nowrap !important; /* Prevent stacking */
-    overflow-x: auto; /* Enable horizontal scrolling */
+    flex-wrap: nowrap !important; 
+    overflow-x: auto; 
     justify-content: flex-start;
     padding-left: 20px;
     padding-right: 20px;
     width: 100%;
-    -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
-    scrollbar-width: none; /* Hide scrollbar Firefox */
-    -webkit-overflow-scrolling: touch; /* Smooth iOS scrolling */
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+    -webkit-overflow-scrolling: touch; 
     padding-bottom: 4px;
   }
-  .acad-tabs-row::-webkit-scrollbar, .sgpa-chip-row::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome/Safari */
-  .acad-tab-btn, .sgpa-chip { flex-shrink: 0; white-space: nowrap; } /* Keep buttons from crushing */
-  .acad-tab-indicator { display: none !important; } /* Hide sliding green bar on mobile */
+  .acad-tabs-row::-webkit-scrollbar, .sgpa-chip-row::-webkit-scrollbar { display: none; } 
+  .acad-tab-btn, .sgpa-chip { flex-shrink: 0; white-space: nowrap; } 
+  .acad-tab-indicator { display: none !important; } 
+
+  /* 🔴 MOBILE MAGIC #1: Custom Animated Mobile Dropdown */
+  #util-tabs { display: none !important; } 
+  .mobile-util-dropdown { 
+    display: block !important; 
+    position: relative; 
+    margin-bottom: 24px; 
+    max-width: 400px; 
+    margin-left: auto; 
+    margin-right: auto; 
+  } 
+  
+  .custom-util-dropdown {
+    padding: 14px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    transition: border-color 0.2s;
+  }
+  .custom-util-dropdown.active { border-color: var(--accent); }
+  .dropdown-arrow { font-size: 12px; transition: transform 0.3s ease; color: var(--text-muted); }
+  .custom-util-dropdown.active .dropdown-arrow { transform: rotate(180deg); color: var(--accent); }
+  
+  .custom-util-list {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    z-index: 100;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .custom-util-list.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .custom-util-item {
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    border-bottom: 1px solid var(--border);
+  }
+  .custom-util-item:last-child { border-bottom: none; }
+  .custom-util-item:active { background: var(--input-bg); }
+  .custom-util-item.active {
+    background: var(--accent);
+    color: #ffffff;
+  }
 
   /* Skills grid crunch */
   .skills-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
@@ -516,57 +588,23 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
 /* Mobile Phones (Extra Small adjustments for tables) */
 @media (max-width: 600px) {
   
-  /* 🔴 MOBILE MAGIC #2: Stacked Mobile Table WITH Internal Horizontal Scroll */
+  /* Scrolling Horizontal Table */
   .sgpa-marks-table { 
     overflow-x: auto; 
     -webkit-overflow-scrolling: touch;
   }
-  .sgpa-marks-header { display: none !important; }
-  
-  .sgpa-mark-row {
-    display: grid !important;
-    grid-template-columns: auto 1fr auto !important;
-    grid-template-rows: auto auto !important;
-    column-gap: 16px !important;
-    row-gap: 12px !important;
-    padding: 18px 20px !important;
-    min-width: 360px !important; /* Forces the slide effect if phone is narrower than 360px */
+  .sgpa-marks-header { display: grid !important; } 
+  .sgpa-marks-header, .sgpa-mark-row {
+    min-width: 500px; 
+    grid-template-columns: 1.5fr 60px 90px 60px; 
+    gap: 12px;
+    padding: 16px 16px;
+    display: grid;
   }
-  .sgpa-subject-name {
-    grid-column: 1 / 3 !important;
-    grid-row: 1 !important;
-    font-size: 15px !important;
-    line-height: 1.4 !important;
-  }
-  .sgpa-mark-row > span:nth-of-type(2) {
-    grid-column: 1 !important;
-    grid-row: 2 !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-  }
-  .sgpa-mark-row > span:nth-of-type(2)::before {
-    content: "Credits:" !important;
-    font-size: 12px !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    color: var(--text-muted) !important;
-  }
-  .sgpa-mark-input {
-    grid-column: 2 !important;
-    grid-row: 2 !important;
-    width: 80px !important;
-    justify-self: start !important;
-    padding: 8px 12px !important;
-  }
-  .sgpa-grade-badge {
-    grid-column: 3 !important;
-    grid-row: 1 / 3 !important;
-    align-self: center !important;
-    justify-self: end !important;
-    padding: 8px 16px !important;
-    min-width: 60px !important;
-  }
+  .sgpa-subject-name { font-size: 14px; line-height: 1.4; }
+  .sgpa-marks-header { font-size: 12px; }
+  .sgpa-mark-input { padding: 8px 6px; font-size: 15px; border-width: 1px; width: 100%; justify-self: center; }
+  .sgpa-grade-badge { font-size: 13px; min-width: auto; padding: 8px 6px; }
   
   /* Adjust modal sizing to prevent edge clipping */
   .modal-box { padding: 24px 20px; }
@@ -897,12 +935,27 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
     </div>
     
     <div class="utility-wrapper">
+      
       <div class="acad-tabs-row" id="util-tabs">
         <button class="acad-tab-btn active" onclick="switchTab('util','sgpa',this)">SGPA Calculator</button>
         <button class="acad-tab-btn" onclick="switchTab('util','conv',this)">SGPA → %</button>
         <button class="acad-tab-btn" onclick="switchTab('util','noc',this)">NOC Format</button>
         <button class="acad-tab-btn" onclick="switchTab('util','hostel',this)">Hostel Format</button>
         <button class="acad-tab-btn" onclick="switchTab('util','cv',this)">CV Format</button>
+      </div>
+
+      <div class="mobile-util-dropdown">
+        <div class="custom-util-dropdown" id="utilDropdownHeader" onclick="toggleUtilDropdown()">
+          <span id="selectedUtilText">SGPA Calculator</span>
+          <span class="dropdown-arrow" id="utilDropdownArrow">▼</span>
+        </div>
+        <div class="custom-util-list" id="utilDropdownList">
+          <div class="custom-util-item active" onclick="selectUtilOption('sgpa', 'SGPA Calculator', this)">SGPA Calculator</div>
+          <div class="custom-util-item" onclick="selectUtilOption('conv', 'SGPA → % Converter', this)">SGPA → % Converter</div>
+          <div class="custom-util-item" onclick="selectUtilOption('noc', 'NOC Format', this)">NOC Format</div>
+          <div class="custom-util-item" onclick="selectUtilOption('hostel', 'Hostel Stay Format', this)">Hostel Stay Format</div>
+          <div class="custom-util-item" onclick="selectUtilOption('cv', 'CV Format', this)">CV Format</div>
+        </div>
       </div>
 
       <div class="tab-panels">
@@ -1312,6 +1365,41 @@ function toggleMenu() {
 function closeMenu() {
   document.getElementById('navMenu').classList.remove('open');
 }
+
+/* ── MOBILE UTIL DROPDOWN LOGIC (CUSTOM) ── */
+function toggleUtilDropdown() {
+  const header = document.getElementById('utilDropdownHeader');
+  const list = document.getElementById('utilDropdownList');
+  header.classList.toggle('active');
+  list.classList.toggle('open');
+}
+
+function selectUtilOption(panel, text, elem) {
+  // Update the text in the header
+  document.getElementById('selectedUtilText').textContent = text;
+  
+  // Update active styling in the dropdown list
+  document.querySelectorAll('.custom-util-item').forEach(el => el.classList.remove('active'));
+  elem.classList.add('active');
+  
+  // Close the dropdown list
+  document.getElementById('utilDropdownHeader').classList.remove('active');
+  document.getElementById('utilDropdownList').classList.remove('open');
+  
+  // Switch the actual utility panel below it
+  document.querySelectorAll(`.tab-panel[id^="util-"]`).forEach(p => p.classList.remove('active'));
+  const target = document.getElementById(`util-${panel}`);
+  if(target) target.classList.add('active');
+}
+
+// Ensure clicking outside the dropdown closes it
+document.addEventListener('click', function(e) {
+  const dropdown = document.querySelector('.mobile-util-dropdown');
+  if (dropdown && !dropdown.contains(e.target)) {
+    document.getElementById('utilDropdownHeader')?.classList.remove('active');
+    document.getElementById('utilDropdownList')?.classList.remove('open');
+  }
+});
 
 /* =========================================================================
    RESOURCE DATA WAREHOUSE
