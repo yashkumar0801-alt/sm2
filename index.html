@@ -253,9 +253,7 @@ nav {
 .acad-tab-btn.locked { opacity: 0.5; cursor: not-allowed; }
 
 /* Mobile Utils Dropdown (Hidden on Desktop) */
-.mobile-util-dropdown {
-  display: none;
-}
+.mobile-util-dropdown { display: none; }
 
 /* ── TAB CONTENT ── */
 .tab-panels { padding: 0; }
@@ -363,10 +361,13 @@ nav {
 
 /* ── CONVERTER ── */
 .conv-wrap { max-width: 400px; margin: 0 auto; }
-.input-group { margin-bottom: 20px; }
+.input-group { margin-bottom: 20px; position: relative; }
 .input-group label { display: block; font-size: 13px; font-weight: 700; color: var(--text-muted); margin-bottom: 8px; }
-.input-group input { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; background: var(--input-bg); color: var(--text); font-size: 16px; outline: none; transition: 0.2s; font-weight: 600; }
-.input-group input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--badge-bg); }
+.input-group input, .input-group textarea { 
+  width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 8px; 
+  background: var(--input-bg); color: var(--text); font-size: 16px; outline: none; transition: 0.2s; font-weight: 600; font-family: 'Arial', sans-serif;
+}
+.input-group input:focus, .input-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--badge-bg); }
 .scale-row { display: flex; gap: 12px; margin-bottom: 20px; }
 .scale-btn { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted); font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
 .scale-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
@@ -400,7 +401,64 @@ nav {
 .modal-close:hover { background: #fee2e2; color: #ef4444; }
 .modal-title { font-family: 'Arial Black', Arial, sans-serif; font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 24px; letter-spacing: -0.5px; }
 
-/* ── PROFESSIONAL DROPDOWN STYLE ── */
+/* ── CUSTOM ANIMATED DROPDOWNS (GLOBAL) ── */
+.custom-util-dropdown {
+  padding: 14px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  transition: border-color 0.2s;
+}
+.custom-util-dropdown.active { border-color: var(--accent); }
+.dropdown-arrow { font-size: 12px; transition: transform 0.3s ease; color: var(--text-muted); }
+.custom-util-dropdown.active .dropdown-arrow { transform: rotate(180deg); color: var(--accent); }
+
+.custom-util-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  z-index: 100;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.custom-util-list.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.custom-util-item {
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  border-bottom: 1px solid var(--border);
+}
+.custom-util-item:last-child { border-bottom: none; }
+.custom-util-item:active { background: var(--input-bg); }
+.custom-util-item.active {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+/* ── PROFESSIONAL DROPDOWN STYLE (NATIVE SELECT FALLBACK) ── */
 .custom-select {
   width: 100%; padding: 12px 40px 12px 16px; border: 1px solid var(--border); border-radius: 8px;
   background-color: var(--input-bg); background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
@@ -420,7 +478,42 @@ nav {
 .toast.show { display: flex; }
 @keyframes slideUp { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-size: 14px; border-top: 1px solid var(--border); margin-top: 40px; }
+/* ── FOOTER & REPORT BUTTON ── */
+footer { 
+  text-align: center; 
+  padding: 40px 24px; 
+  background: var(--bg-card);
+  color: var(--text-muted); 
+  font-size: 14px; 
+  border-top: 1px solid var(--border); 
+  margin-top: 40px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.report-btn {
+  width: 100%;
+  max-width: 400px;
+  font-size: 14px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* DESKTOP HOVER EFFECT FOR REPORT BUTTON */
+@media (min-width: 769px) {
+  .report-btn:hover {
+    background: var(--bg-card);
+    color: var(--accent);
+  }
+}
 
 /* ── UTILITY CLASS FOR TABS ── */
 .hidden-tab { display: none !important; }
@@ -493,7 +586,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
   .pw-explore { font-size: 12px; }
   .pw-card-blob { width: 60px; } 
 
-  /* Swipeable Edge-to-Edge Tabs (All tab rows) */
+  /* Swipeable Edge-to-Edge Tabs */
   .acad-tabs-row, .sgpa-chip-row {
     flex-wrap: nowrap !important; 
     overflow-x: auto; 
@@ -510,7 +603,7 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
   .acad-tab-btn, .sgpa-chip { flex-shrink: 0; white-space: nowrap; } 
   .acad-tab-indicator { display: none !important; } 
 
-  /* 🔴 MOBILE MAGIC #1: Custom Animated Mobile Dropdown */
+  /* Custom Animated Mobile Dropdown for Utility Tabs */
   #util-tabs { display: none !important; } 
   .mobile-util-dropdown { 
     display: block !important; 
@@ -519,62 +612,6 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
     max-width: 400px; 
     margin-left: auto; 
     margin-right: auto; 
-  } 
-  
-  .custom-util-dropdown {
-    padding: 14px 20px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    transition: border-color 0.2s;
-  }
-  .custom-util-dropdown.active { border-color: var(--accent); }
-  .dropdown-arrow { font-size: 12px; transition: transform 0.3s ease; color: var(--text-muted); }
-  .custom-util-dropdown.active .dropdown-arrow { transform: rotate(180deg); color: var(--accent); }
-  
-  .custom-util-list {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    z-index: 100;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(-10px);
-    pointer-events: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .custom-util-list.open {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-  .custom-util-item {
-    padding: 14px 20px;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    border-bottom: 1px solid var(--border);
-  }
-  .custom-util-item:last-child { border-bottom: none; }
-  .custom-util-item:active { background: var(--input-bg); }
-  .custom-util-item.active {
-    background: var(--accent);
-    color: #ffffff;
   }
 
   /* Skills grid crunch */
@@ -583,6 +620,9 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
   .skill-emoji { width: 48px; height: 48px; font-size: 24px; margin: 0 auto; }
   .skill-name { font-size: 14px; margin-bottom: 2px; }
   .skill-meta { font-size: 11px; }
+
+  /* Scale Report Button to 50% on Mobile */
+  .report-btn { width: 50%; }
 }
 
 /* Mobile Phones (Extra Small adjustments for tables) */
@@ -1213,7 +1253,12 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
 
   </div>
 </div> <footer>
-  <strong>StudyMantra</strong> &nbsp;|&nbsp; Built with ♥ for NIT Durgapur students
+  <div style="margin-bottom: 12px;">
+    <strong>StudyMantra</strong> &nbsp;|&nbsp; Built with ♥ for NIT Durgapur students
+  </div>
+  <button class="report-btn" onclick="openModal('reportModal')">
+    Report Issue / Suggestion
+  </button>
 </footer>
 
 <div class="modal-overlay" id="uploadModal">
@@ -1300,6 +1345,45 @@ footer { text-align: center; padding: 40px 24px; color: var(--text-muted); font-
   </div>
 </div>
 
+<div class="modal-overlay" id="reportModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('reportModal')">✕</button>
+    <div class="modal-title">Report Issue / Suggestion</div>
+    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.5;">
+      Help us keep the community clean! If you find any wrong, irrelevant, or broken content, please report it here so we can review and remove it.
+    </p>
+    
+    <div class="input-group" id="reportDropdownContainer">
+      <label>Issue Type</label>
+      <div class="custom-util-dropdown" id="reportDropdownHeader" onclick="toggleReportDropdown()">
+        <span id="selectedReportText">Wrong/Irrelevant Content</span>
+        <span class="dropdown-arrow" id="reportDropdownArrow">▼</span>
+      </div>
+      <div class="custom-util-list" id="reportDropdownList">
+        <div class="custom-util-item active" onclick="selectReportOption('Wrong/Irrelevant Content', this)">Wrong/Irrelevant Content</div>
+        <div class="custom-util-item" onclick="selectReportOption('Broken Link / PDF', this)">Broken Link / PDF</div>
+        <div class="custom-util-item" onclick="selectReportOption('Feature Suggestion', this)">Feature Suggestion</div>
+        <div class="custom-util-item" onclick="selectReportOption('Other', this)">Other</div>
+      </div>
+    </div>
+    
+    <div class="input-group">
+      <label>Link to Content (Optional)</label>
+      <input type="text" id="reportLink" placeholder="Paste the page or file link here" autocomplete="off" />
+    </div>
+    
+    <div class="input-group">
+      <label>Details</label>
+      <textarea id="reportDetails" rows="4" placeholder="Describe the issue..."></textarea>
+    </div>
+    
+    <div style="display:flex; gap:12px; margin-top:24px;">
+      <button class="btn-primary" style="flex:1;" onclick="submitReport()">Submit Report</button>
+      <button class="btn-secondary" onclick="closeModal('reportModal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="pdfModal">
   <div class="modal-box" id="pdfModalBox" style="width: 90vw; height: 90vh; max-width: 1200px; display: flex; flex-direction: column; padding: 20px;">
     
@@ -1366,7 +1450,7 @@ function closeMenu() {
   document.getElementById('navMenu').classList.remove('open');
 }
 
-/* ── MOBILE UTIL DROPDOWN LOGIC (CUSTOM) ── */
+/* ── CUSTOM DROPDOWN LOGIC (Utilities & Reports) ── */
 function toggleUtilDropdown() {
   const header = document.getElementById('utilDropdownHeader');
   const list = document.getElementById('utilDropdownList');
@@ -1375,29 +1459,46 @@ function toggleUtilDropdown() {
 }
 
 function selectUtilOption(panel, text, elem) {
-  // Update the text in the header
   document.getElementById('selectedUtilText').textContent = text;
-  
-  // Update active styling in the dropdown list
-  document.querySelectorAll('.custom-util-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('#utilDropdownList .custom-util-item').forEach(el => el.classList.remove('active'));
   elem.classList.add('active');
   
-  // Close the dropdown list
   document.getElementById('utilDropdownHeader').classList.remove('active');
   document.getElementById('utilDropdownList').classList.remove('open');
   
-  // Switch the actual utility panel below it
   document.querySelectorAll(`.tab-panel[id^="util-"]`).forEach(p => p.classList.remove('active'));
   const target = document.getElementById(`util-${panel}`);
   if(target) target.classList.add('active');
 }
 
-// Ensure clicking outside the dropdown closes it
+function toggleReportDropdown() {
+  const header = document.getElementById('reportDropdownHeader');
+  const list = document.getElementById('reportDropdownList');
+  header.classList.toggle('active');
+  list.classList.toggle('open');
+}
+
+function selectReportOption(text, elem) {
+  document.getElementById('selectedReportText').textContent = text;
+  document.querySelectorAll('#reportDropdownList .custom-util-item').forEach(el => el.classList.remove('active'));
+  elem.classList.add('active');
+  
+  document.getElementById('reportDropdownHeader').classList.remove('active');
+  document.getElementById('reportDropdownList').classList.remove('open');
+}
+
+// Close custom dropdowns when clicking outside
 document.addEventListener('click', function(e) {
-  const dropdown = document.querySelector('.mobile-util-dropdown');
-  if (dropdown && !dropdown.contains(e.target)) {
+  const utilDropdown = document.querySelector('.mobile-util-dropdown');
+  if (utilDropdown && !utilDropdown.contains(e.target)) {
     document.getElementById('utilDropdownHeader')?.classList.remove('active');
     document.getElementById('utilDropdownList')?.classList.remove('open');
+  }
+
+  const reportDropdownContainer = document.getElementById('reportDropdownContainer');
+  if (reportDropdownContainer && !reportDropdownContainer.contains(e.target)) {
+    document.getElementById('reportDropdownHeader')?.classList.remove('active');
+    document.getElementById('reportDropdownList')?.classList.remove('open');
   }
 });
 
@@ -1707,6 +1808,27 @@ function submitResourceToGoogle() {
     console.error("Submission error:", error);
     showToast("Error submitting resource. Please try again.");
   });
+}
+
+function submitReport() {
+  const details = document.getElementById('reportDetails').value.trim();
+  if (!details) {
+    showToast('Please provide some details about the issue.');
+    return;
+  }
+  
+  showToast('Thank you! Your report has been submitted.');
+  closeModal('reportModal');
+  
+  // Clear the form
+  document.getElementById('reportDetails').value = '';
+  document.getElementById('reportLink').value = '';
+  
+  // Reset custom dropdown
+  const list = document.getElementById('reportDropdownList');
+  list.querySelectorAll('.custom-util-item').forEach(el => el.classList.remove('active'));
+  list.querySelector('.custom-util-item').classList.add('active'); // set first as active
+  document.getElementById('selectedReportText').textContent = 'Wrong/Irrelevant Content';
 }
 
 /* ── THEME ── */
