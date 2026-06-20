@@ -673,9 +673,6 @@ footer {
           <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"/></svg>
           <span>Add Links</span>
         </button>
-        <button class="nav-btn login-btn" onclick="openModal('loginModal'); closeMenu();">
-          <span>Login/Register</span>
-        </button>
       </div>
 
       <div class="desktop-theme" onclick="toggleTheme()">
@@ -727,13 +724,13 @@ footer {
       <button class="acad-tab-btn active" onclick="switchTab('acad','firstyear',this)">First Year</button>
       <button class="acad-tab-btn" onclick="switchTab('acad','mech',this)">Mechanical</button>
       <button class="acad-tab-btn" onclick="switchTab('acad','mnc',this)">Maths & Computing</button>
-      <button class="acad-tab-btn locked" onclick="showLocked()">Civil</button>
-      <button class="acad-tab-btn locked" onclick="showLocked()">Electrical</button>
-      <button class="acad-tab-btn locked" onclick="showLocked()">Computer Sc.</button>
-      <button class="acad-tab-btn locked" onclick="showLocked()">ECE</button>
-      <button class="acad-tab-btn locked" onclick="showLocked()">Chemical</button>
-      <button class="acad-tab-btn locked" onclick="showLocked()">Bio Tech</button>
-      <button class="acad-tab-btn locked" onclick="showLocked()">Metallurgy</button>
+      <button class="acad-tab-btn" onclick="switchTab('acad','civil',this)">Civil</button>
+      <button class="acad-tab-btn" onclick="switchTab('acad','elec',this)">Electrical</button>
+      <button class="acad-tab-btn" onclick="switchTab('acad','cse',this)">Computer Sc.</button>
+      <button class="acad-tab-btn" onclick="switchTab('acad','ece',this)">ECE</button>
+      <button class="acad-tab-btn" onclick="switchTab('acad','chem',this)">Chemical</button>
+      <button class="acad-tab-btn" onclick="switchTab('acad','bio',this)">Bio Tech</button>
+      <button class="acad-tab-btn" onclick="switchTab('acad','meta',this)">Metallurgy</button>
     </div>
     
     <div class="tab-panels">
@@ -965,6 +962,266 @@ footer {
           </div>
         </div>
       </div>
+
+      <div class="tab-panel" id="acad-civil">
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openCategory('Lecture Notes', 'Comprehensive handwritten and digital notes.', 'civil')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Lecture Notes</div>
+              <div class="pw-tags"><span class="pw-tag">Handwritten</span><span class="pw-tag">Digital PDF</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('PYQs', 'Past examination papers.', 'civil')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">PYQs</div>
+              <div class="pw-tags"><span class="pw-tag">Mid-Sem</span><span class="pw-tag">End-Sem</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Syllabus', 'Official syllabus and course structure.', 'civil')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Syllabus</div>
+              <div class="pw-tags"><span class="pw-tag">Official</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Formula/Short Notes', 'Quick revision formulas.', 'civil')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Formula/Short Notes</div>
+              <div class="pw-tags"><span class="pw-tag">Formulas</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('YouTube Links', 'Curated YouTube playlists.', 'civil')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">YouTube Links</div>
+              <div class="pw-tags"><span class="pw-tag">Playlists</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Assignments', 'Solved assignments and sheets.', 'civil')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Assignments</div>
+              <div class="pw-tags"><span class="pw-tag">Solved Sheets</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Lab Reports', 'Observation tables and formats.', 'civil')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Lab Reports</div>
+              <div class="pw-tags"><span class="pw-tag">Observations</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Books', 'Recommended textbooks.', 'civil')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Books</div>
+              <div class="pw-tags"><span class="pw-tag">Textbooks</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="acad-cse">
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openCategory('Lecture Notes', 'Comprehensive handwritten and digital notes.', 'cse')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Lecture Notes</div>
+              <div class="pw-tags"><span class="pw-tag">Handwritten</span><span class="pw-tag">Digital PDF</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('PYQs', 'Past examination papers.', 'cse')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">PYQs</div>
+              <div class="pw-tags"><span class="pw-tag">Mid-Sem</span><span class="pw-tag">End-Sem</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Syllabus', 'Official syllabus and course structure.', 'cse')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Syllabus</div>
+              <div class="pw-tags"><span class="pw-tag">Official</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Formula/Short Notes', 'Quick revision formulas.', 'cse')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Formula/Short Notes</div>
+              <div class="pw-tags"><span class="pw-tag">Formulas</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('YouTube Links', 'Curated YouTube playlists.', 'cse')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">YouTube Links</div>
+              <div class="pw-tags"><span class="pw-tag">Playlists</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Assignments', 'Solved assignments and sheets.', 'cse')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Assignments</div>
+              <div class="pw-tags"><span class="pw-tag">Solved Sheets</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Lab Reports', 'Observation tables and formats.', 'cse')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Lab Reports</div>
+              <div class="pw-tags"><span class="pw-tag">Observations</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Books', 'Recommended textbooks.', 'cse')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Books</div>
+              <div class="pw-tags"><span class="pw-tag">Textbooks</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="acad-meta">
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openCategory('Lecture Notes', 'Comprehensive handwritten and digital notes.', 'meta')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Lecture Notes</div>
+              <div class="pw-tags"><span class="pw-tag">Handwritten</span><span class="pw-tag">Digital PDF</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('PYQs', 'Past examination papers.', 'meta')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">PYQs</div>
+              <div class="pw-tags"><span class="pw-tag">Mid-Sem</span><span class="pw-tag">End-Sem</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Syllabus', 'Official syllabus and course structure.', 'meta')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Syllabus</div>
+              <div class="pw-tags"><span class="pw-tag">Official</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Formula/Short Notes', 'Quick revision formulas.', 'meta')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Formula/Short Notes</div>
+              <div class="pw-tags"><span class="pw-tag">Formulas</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('YouTube Links', 'Curated YouTube playlists.', 'meta')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">YouTube Links</div>
+              <div class="pw-tags"><span class="pw-tag">Playlists</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Assignments', 'Solved assignments and sheets.', 'meta')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Assignments</div>
+              <div class="pw-tags"><span class="pw-tag">Solved Sheets</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Lab Reports', 'Observation tables and formats.', 'meta')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Lab Reports</div>
+              <div class="pw-tags"><span class="pw-tag">Observations</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+          <div class="pw-card" onclick="openCategory('Books', 'Recommended textbooks.', 'meta')">
+            <div class="pw-card-blob"></div>
+            <div class="pw-card-content">
+              <div class="pw-card-title">Books</div>
+              <div class="pw-tags"><span class="pw-tag">Textbooks</span></div>
+              <div class="pw-explore">Explore Category <span>→</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="acad-elec">
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openCategory('Lecture Notes', 'Comprehensive handwritten and digital notes.', 'elec')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Lecture Notes</div><div class="pw-tags"><span class="pw-tag">Handwritten</span><span class="pw-tag">Digital PDF</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('PYQs', 'Past examination papers.', 'elec')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">PYQs</div><div class="pw-tags"><span class="pw-tag">Mid-Sem</span><span class="pw-tag">End-Sem</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Syllabus', 'Official syllabus and course structure.', 'elec')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Syllabus</div><div class="pw-tags"><span class="pw-tag">Official</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Formula/Short Notes', 'Quick revision formulas.', 'elec')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Formula/Short Notes</div><div class="pw-tags"><span class="pw-tag">Formulas</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('YouTube Links', 'Curated YouTube playlists.', 'elec')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">YouTube Links</div><div class="pw-tags"><span class="pw-tag">Playlists</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Assignments', 'Solved assignments and sheets.', 'elec')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Assignments</div><div class="pw-tags"><span class="pw-tag">Solved Sheets</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Lab Reports', 'Observation tables and formats.', 'elec')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Lab Reports</div><div class="pw-tags"><span class="pw-tag">Observations</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Books', 'Recommended textbooks.', 'elec')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Books</div><div class="pw-tags"><span class="pw-tag">Textbooks</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="acad-ece">
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openCategory('Lecture Notes', 'Comprehensive handwritten and digital notes.', 'ece')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Lecture Notes</div><div class="pw-tags"><span class="pw-tag">Handwritten</span><span class="pw-tag">Digital PDF</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('PYQs', 'Past examination papers.', 'ece')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">PYQs</div><div class="pw-tags"><span class="pw-tag">Mid-Sem</span><span class="pw-tag">End-Sem</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Syllabus', 'Official syllabus and course structure.', 'ece')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Syllabus</div><div class="pw-tags"><span class="pw-tag">Official</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Formula/Short Notes', 'Quick revision formulas.', 'ece')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Formula/Short Notes</div><div class="pw-tags"><span class="pw-tag">Formulas</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('YouTube Links', 'Curated YouTube playlists.', 'ece')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">YouTube Links</div><div class="pw-tags"><span class="pw-tag">Playlists</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Assignments', 'Solved assignments and sheets.', 'ece')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Assignments</div><div class="pw-tags"><span class="pw-tag">Solved Sheets</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Lab Reports', 'Observation tables and formats.', 'ece')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Lab Reports</div><div class="pw-tags"><span class="pw-tag">Observations</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Books', 'Recommended textbooks.', 'ece')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Books</div><div class="pw-tags"><span class="pw-tag">Textbooks</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="acad-chem">
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openCategory('Lecture Notes', 'Comprehensive handwritten and digital notes.', 'chem')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Lecture Notes</div><div class="pw-tags"><span class="pw-tag">Handwritten</span><span class="pw-tag">Digital PDF</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('PYQs', 'Past examination papers.', 'chem')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">PYQs</div><div class="pw-tags"><span class="pw-tag">Mid-Sem</span><span class="pw-tag">End-Sem</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Syllabus', 'Official syllabus and course structure.', 'chem')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Syllabus</div><div class="pw-tags"><span class="pw-tag">Official</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Formula/Short Notes', 'Quick revision formulas.', 'chem')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Formula/Short Notes</div><div class="pw-tags"><span class="pw-tag">Formulas</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('YouTube Links', 'Curated YouTube playlists.', 'chem')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">YouTube Links</div><div class="pw-tags"><span class="pw-tag">Playlists</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Assignments', 'Solved assignments and sheets.', 'chem')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Assignments</div><div class="pw-tags"><span class="pw-tag">Solved Sheets</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Lab Reports', 'Observation tables and formats.', 'chem')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Lab Reports</div><div class="pw-tags"><span class="pw-tag">Observations</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Books', 'Recommended textbooks.', 'chem')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Books</div><div class="pw-tags"><span class="pw-tag">Textbooks</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="acad-bio">
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openCategory('Lecture Notes', 'Comprehensive handwritten and digital notes.', 'bio')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Lecture Notes</div><div class="pw-tags"><span class="pw-tag">Handwritten</span><span class="pw-tag">Digital PDF</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('PYQs', 'Past examination papers.', 'bio')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">PYQs</div><div class="pw-tags"><span class="pw-tag">Mid-Sem</span><span class="pw-tag">End-Sem</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Syllabus', 'Official syllabus and course structure.', 'bio')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Syllabus</div><div class="pw-tags"><span class="pw-tag">Official</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Formula/Short Notes', 'Quick revision formulas.', 'bio')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Formula/Short Notes</div><div class="pw-tags"><span class="pw-tag">Formulas</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('YouTube Links', 'Curated YouTube playlists.', 'bio')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">YouTube Links</div><div class="pw-tags"><span class="pw-tag">Playlists</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Assignments', 'Solved assignments and sheets.', 'bio')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Assignments</div><div class="pw-tags"><span class="pw-tag">Solved Sheets</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Lab Reports', 'Observation tables and formats.', 'bio')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Lab Reports</div><div class="pw-tags"><span class="pw-tag">Observations</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openCategory('Books', 'Recommended textbooks.', 'bio')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Books</div><div class="pw-tags"><span class="pw-tag">Textbooks</span></div><div class="pw-explore">Explore Category <span>→</span></div></div></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1122,9 +1379,12 @@ footer {
   </div>
 
   <div class="pw-section">
-    <div class="pw-section-header">
+    <div class="pw-section-header" style="margin-bottom: 24px;">
       <h2>Develop Skills</h2>
-      <p>Explore recommended learning tracks, resources, and project ideas to build your resume.</p>
+      <p>We are crowdsourcing the best free tutorials on the internet. Know a great YouTube playlist or course?</p>
+      <button class="btn-primary" onclick="openModal('skillContributeModal')" style="margin-top: 16px; border-radius: 999px; padding: 10px 28px;">
+        + Contribute to Skills
+      </button>
     </div>
     
     <div class="acad-tabs-row">
@@ -1135,41 +1395,48 @@ footer {
     </div>
     
     <div class="tab-panels">
+      
       <div class="tab-panel active" id="skill-cae">
-        <div class="skills-grid">
-          <div class="skill-card"><div class="skill-emoji">🖥️</div><div class="skill-info"><div class="skill-name">ANSYS Basics</div><div class="skill-meta">FEA & simulation</div></div></div>
-          <div class="skill-card"><div class="skill-emoji">📐</div><div class="skill-info"><div class="skill-name">AutoCAD 2D/3D</div><div class="skill-meta">Design & drafting</div></div></div>
-          <div class="skill-card"><div class="skill-emoji">⚙️</div><div class="skill-info"><div class="skill-name">SolidWorks</div><div class="skill-meta">Mechanical design</div></div></div>
-          <div class="skill-card"><div class="skill-emoji">🔬</div><div class="skill-info"><div class="skill-name">CFD Analysis</div><div class="skill-meta">Fluid simulation</div></div></div>
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">ANSYS Basics</div><div class="pw-tags"><span class="pw-tag">FEA & simulation</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">AutoCAD 2D/3D</div><div class="pw-tags"><span class="pw-tag">Design & drafting</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">SolidWorks</div><div class="pw-tags"><span class="pw-tag">Mechanical design</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">CFD Analysis</div><div class="pw-tags"><span class="pw-tag">Fluid simulation</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
         </div>
       </div>
+      
       <div class="tab-panel" id="skill-micro">
-        <div class="skills-grid">
-          <div class="skill-card"><div class="skill-emoji">🤖</div><div class="skill-info"><div class="skill-name">Arduino</div><div class="skill-meta">Beginner to advanced</div></div></div>
-          <div class="skill-card"><div class="skill-emoji">🍓</div><div class="skill-info"><div class="skill-name">Raspberry Pi</div><div class="skill-meta">Linux & IoT projects</div></div></div>
-          <div class="skill-card"><div class="skill-emoji">📡</div><div class="skill-info"><div class="skill-name">ESP32 / ESP8266</div><div class="skill-meta">WiFi & BT modules</div></div></div>
-          <div class="skill-card"><div class="skill-emoji">💡</div><div class="skill-info"><div class="skill-name">STM32</div><div class="skill-meta">ARM Cortex-M</div></div></div>
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Arduino</div><div class="pw-tags"><span class="pw-tag">Beginner to advanced</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Raspberry Pi</div><div class="pw-tags"><span class="pw-tag">Linux & IoT projects</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">ESP32 / ESP8266</div><div class="pw-tags"><span class="pw-tag">WiFi & BT modules</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">STM32</div><div class="pw-tags"><span class="pw-tag">ARM Cortex-M</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
         </div>
       </div>
+      
       <div class="tab-panel" id="skill-soft">
-        <div class="skills-grid">
-          <div class="skill-card"><div class="skill-emoji">🎤</div><div class="skill-info"><div class="skill-name">Public Speaking</div><div class="skill-meta">Confidence & clarity</div></div></div>
-          <div class="skill-card"><div class="skill-emoji">✍️</div><div class="skill-info"><div class="skill-name">Technical Writing</div><div class="skill-meta">Reports & docs</div></div></div>
-          <div class="skill-card"><div class="skill-emoji">🤝</div><div class="skill-info"><div class="skill-name">Team Leadership</div><div class="skill-meta">Management</div></div></div>
-          <div class="skill-card"><div class="skill-emoji">🧠</div><div class="skill-info"><div class="skill-name">Critical Thinking</div><div class="skill-meta">Problem-solving</div></div></div>
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Public Speaking</div><div class="pw-tags"><span class="pw-tag">Confidence & clarity</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Technical Writing</div><div class="pw-tags"><span class="pw-tag">Reports & docs</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Team Leadership</div><div class="pw-tags"><span class="pw-tag">Management</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Critical Thinking</div><div class="pw-tags"><span class="pw-tag">Problem-solving</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
         </div>
       </div>
+      
       <div class="tab-panel" id="skill-code">
-        <div class="skills-grid">
-          <div class="skill-card"><div class="skill-emoji">🐍</div><div class="skill-info"><div class="skill-name">Python</div><div class="skill-meta">Data science</div></div></div>
-          <div class="skill-card"><div class="skill-emoji">🌐</div><div class="skill-info"><div class="skill-name">Web Dev</div><div class="skill-meta">MERN Stack</div></div></div>
-          <div class="skill-card"><div class="skill-emoji">🏛️</div><div class="skill-info"><div class="skill-name">DSA</div><div class="skill-meta">Algorithms</div></div></div>
-          <div class="skill-card"><div class="skill-emoji">☁️</div><div class="skill-info"><div class="skill-name">Cloud & DevOps</div><div class="skill-meta">AWS, Docker</div></div></div>
+        <div class="resource-grid">
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Python</div><div class="pw-tags"><span class="pw-tag">Data science</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Web Dev</div><div class="pw-tags"><span class="pw-tag">MERN Stack</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">DSA</div><div class="pw-tags"><span class="pw-tag">Algorithms</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
+          <div class="pw-card" onclick="openModal('skillContributeModal')"><div class="pw-card-blob"></div><div class="pw-card-content"><div class="pw-card-title">Cloud & DevOps</div><div class="pw-tags"><span class="pw-tag">AWS, Docker</span></div><div class="pw-explore">Submit Link <span>→</span></div></div></div>
         </div>
       </div>
+      
     </div>
   </div>
-</div> <div class="main-sections view-fade" id="categoryView" style="display: none;">
+</div>
+
+<div class="main-sections view-fade" id="categoryView" style="display: none;">
   <div class="pw-section">
     
     <div style="position: sticky; top: 100px; z-index: 90; height: 0;">
@@ -1199,7 +1466,9 @@ footer {
     </div>
 
   </div>
-</div> <div class="main-sections view-fade" id="subjectView" style="display: none;">
+</div>
+
+<div class="main-sections view-fade" id="subjectView" style="display: none;">
   <div class="pw-section">
     
     <div style="position: sticky; top: 100px; z-index: 90; height: 0;">
@@ -1211,48 +1480,14 @@ footer {
       <p id="subjDesc">Explore topic-wise materials and lectures</p>
     </div>
 
-    <div class="resource-grid">
+    <div class="resource-grid" id="subjectContentGrid">
       
-      <div class="pw-card" onclick="openModal('videoSelectModal')">
-        <div class="pw-card-blob"></div>
-        <div class="pw-card-content">
-          <div class="pw-card-title">Gyroscope</div>
-          <div class="pw-tags"><span class="pw-tag">Module 1</span><span class="pw-tag">Video Lectures</span></div>
-          <div class="pw-explore">Select Video <span>→</span></div>
-        </div>
-      </div>
-      
-      <div class="pw-card" onclick="showToast('Governor materials coming soon.')">
-        <div class="pw-card-blob"></div>
-        <div class="pw-card-content">
-          <div class="pw-card-title">Governors</div>
-          <div class="pw-tags"><span class="pw-tag">Module 2</span></div>
-          <div class="pw-explore">Coming Soon <span>→</span></div>
-        </div>
-      </div>
-      
-      <div class="pw-card" onclick="showToast('Cams & Followers materials coming soon.')">
-        <div class="pw-card-blob"></div>
-        <div class="pw-card-content">
-          <div class="pw-card-title">Cams & Followers</div>
-          <div class="pw-tags"><span class="pw-tag">Module 3</span></div>
-          <div class="pw-explore">Coming Soon <span>→</span></div>
-        </div>
-      </div>
-      
-      <div class="pw-card" onclick="showToast('Balancing materials coming soon.')">
-        <div class="pw-card-blob"></div>
-        <div class="pw-card-content">
-          <div class="pw-card-title">Balancing</div>
-          <div class="pw-tags"><span class="pw-tag">Module 4</span></div>
-          <div class="pw-explore">Coming Soon <span>→</span></div>
-        </div>
-      </div>
-
     </div>
 
   </div>
-</div> <footer>
+</div>
+
+<footer>
   <div style="margin-bottom: 12px;">
     <strong>StudyMantra</strong> &nbsp;|&nbsp; Built with ♥ for NIT Durgapur students
   </div>
@@ -1260,6 +1495,73 @@ footer {
     Report Issue / Suggestion
   </button>
 </footer>
+
+<div class="modal-overlay" id="skillContributeModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('skillContributeModal')">✕</button>
+    <div class="modal-title">Contribute to Skills</div>
+    
+    <div class="input-group" id="skillDropdownContainer">
+      <label>How would you like to contribute?</label>
+      <div class="custom-util-dropdown" id="skillDropdownHeader" onclick="toggleSkillDropdown()">
+        <span id="selectedSkillText">Add a Link to an Existing Skill</span>
+        <span class="dropdown-arrow" id="skillDropdownArrow">▼</span>
+      </div>
+      <div class="custom-util-list" id="skillDropdownList">
+        <div class="custom-util-item active" onclick="selectSkillOption('existing', 'Add a Link to an Existing Skill', this)">Add a Link to an Existing Skill</div>
+        <div class="custom-util-item" onclick="selectSkillOption('new', 'Suggest a New Skill Category', this)">Suggest a New Skill Category</div>
+        <div class="custom-util-item" onclick="selectSkillOption('report', 'Report Broken/Bad Content', this)">Report Broken/Bad Content</div>
+      </div>
+    </div>
+
+    <div id="skill-form-existing" style="display: block; animation: fadeIn 0.3s ease;">
+       <div class="input-group">
+         <label>Select Skill</label>
+         <select class="custom-select" id="existingSkillSelect">
+            <option>ANSYS Basics</option><option>AutoCAD 2D/3D</option><option>SolidWorks</option><option>CFD Analysis</option>
+            <option>Arduino</option><option>Raspberry Pi</option><option>ESP32 / ESP8266</option><option>STM32</option>
+            <option>Public Speaking</option><option>Technical Writing</option><option>Team Leadership</option><option>Critical Thinking</option>
+            <option>Python</option><option>Web Dev (MERN)</option><option>DSA</option><option>Cloud & DevOps</option>
+         </select>
+       </div>
+       <div class="input-group">
+         <label>Link (YouTube, Course, etc.)</label>
+         <input type="text" placeholder="Paste URL here" autocomplete="off" />
+       </div>
+    </div>
+
+    <div id="skill-form-new" style="display: none; animation: fadeIn 0.3s ease;">
+       <div class="input-group">
+         <label>Proposed Skill Name</label>
+         <input type="text" placeholder="e.g., UI/UX Design" autocomplete="off" />
+       </div>
+       <div class="input-group">
+         <label>Why is it important?</label>
+         <textarea rows="2" placeholder="Briefly explain why students should learn this..."></textarea>
+       </div>
+       <div class="input-group">
+         <label>Starter Link (Optional)</label>
+         <input type="text" placeholder="Paste a good tutorial URL here" autocomplete="off" />
+       </div>
+    </div>
+
+    <div id="skill-form-report" style="display: none; animation: fadeIn 0.3s ease;">
+       <div class="input-group">
+         <label>Which skill has an issue?</label>
+         <input type="text" placeholder="e.g., Python" autocomplete="off" />
+       </div>
+       <div class="input-group">
+         <label>What's the issue?</label>
+         <textarea rows="2" placeholder="Dead link, outdated info, better alternative available..."></textarea>
+       </div>
+    </div>
+
+    <div style="display:flex; gap:12px; margin-top:24px;">
+      <button class="btn-primary" style="flex:1;" onclick="submitSkillContribution()">Submit</button>
+      <button class="btn-secondary" onclick="closeModal('skillContributeModal')">Cancel</button>
+    </div>
+  </div>
+</div>
 
 <div class="modal-overlay" id="uploadModal">
   <div class="modal-box">
@@ -1576,73 +1878,90 @@ function switchCatTab(sem, btn) {
   moveIndicator('cat', btn);
 
   const container = document.getElementById('categoryContent');
-  let data = resourceData[currentCategoryTitle] && resourceData[currentCategoryTitle][sem];
+  let data = null;
 
-  if (!data || data.length === 0) {
-    if (currentCategoryBranch === 'mech' && sem === 'sem3') {
-      if (currentCategoryTitle === 'Books') {
-        data = [
-          { title: 'Mechanics of Materials - Beer & Johnston', desc: '4th Edition', tag: 'Solid Mechanics', driveUrl: 'https://drive.google.com/file/d/1jEvDlPKgu4btPM0m5PYQOYrvv1yWkr9j/preview' },
-          { title: 'Theory of Machines - S.S. Rattan', desc: '3rd Edition', tag: 'Theory of Machines', driveUrl: 'https://drive.google.com/file/d/1sVkdLLn2ovAKdLXkBpYJBROJ1n30TXqy/preview' },
-          { title: 'Engineering Thermodynamics - P.K. Nag', desc: 'Textbook', tag: 'Thermodynamics', driveUrl: 'https://drive.google.com/file/d/1F0i4aKy7wbOWYqsphRCrkVR537sFq1kN/preview' },
-          { title: 'Engineering Thermodynamics Solutions - P.K. Nag', desc: 'Solved Exercises', tag: 'Solutions', driveUrl: 'https://drive.google.com/file/d/1_DInvPRUkr_CD63fFuw8ulqPyxmP4KBE/preview' },
-          { title: 'Fundamentals of Gas Dynamics - R.D. Zucker', desc: 'Textbook', tag: 'Fluid Mechanics', driveUrl: 'https://drive.google.com/file/d/1tp2-XPXmj4Xt2b1iRlHqqlOimtLSNifh/preview' },
-          { title: 'Engineering Subject Reference', desc: 'Additional Book', tag: 'Reference', driveUrl: 'https://drive.google.com/file/d/1GO2rf5eRX8rjMIzFwAI6UUZfnKjAD0Gy/preview' }
-        ];
-      } else if (currentCategoryTitle === 'Formula/Short Notes') {
-        data = [
-          { title: 'Mathematics 3 (MAC 331)', desc: 'Quick formulas and cheat sheets.', tag: 'Formulas' },
-          { title: 'Solid Mechanics (MEC 301)', desc: 'Complete short notes and formulas.', tag: 'Short Notes', driveUrl: 'https://drive.google.com/file/d/1FL9Q-CB4B2AbQN9YVkItS7mJUZmP5rV8/preview' },
-          { title: 'Theory of Machine and Mechanics (MEC 302)', desc: 'Quick formulas and cheat sheets.', tag: 'Formulas' },
-          { title: 'Fluid Mechanics (MEC 303)', desc: 'Quick formulas and cheat sheets.', tag: 'Formulas' },
-          { title: 'Engineering Thermodynamics (MEC 304)', desc: 'Quick formulas and cheat sheets.', tag: 'Formulas' }
-        ];
-      } else if (currentCategoryTitle !== 'Lab Reports') {
-        data = [
-          { title: 'Mathematics 3 (MAC 331)', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
-          { title: 'Solid Mechanics (MEC 301)', desc: 'Previous year papers and solutions.', tag: 'Subject' },
-          { title: 'Theory of Machine and Mechanics (MEC 302)', desc: 'Video lectures and reference links.', tag: 'Subject' },
-          { title: 'Fluid Mechanics (MEC 303)', desc: 'Assignments and lab manuals.', tag: 'Subject' },
-          { title: 'Engineering Thermodynamics (MEC 304)', desc: 'Extra study materials.', tag: 'Subject' }
-        ];
-      }
-    } else if (currentCategoryBranch === 'mech' && sem === 'sem4') {
-      if (currentCategoryTitle === 'Books') {
-        data = [
-          { title: 'Design of Machine Elements by McGraw Hill', desc: 'Mechanical Engineering', tag: 'Textbook', driveUrl: 'https://drive.google.com/file/d/1sLrHjiQVI2lJOX_RcywFqbeeTKbzCKfT/preview' }
-        ];
-      } else if (currentCategoryTitle !== 'Lab Reports') {
-        data = [
-          { title: 'Design of Machine Elements - 1 (MEC 401)', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
-          { title: 'Casting, Forming and Welding (MEC 402)', desc: 'Previous year papers and solutions.', tag: 'Subject' },
-          { title: 'Heat and Mass Transfer (MEC 403)', desc: 'Video lectures and reference links.', tag: 'Subject' },
-          { title: 'Dynamics of Machine (MEC 404)', desc: 'Topic-wise modules and resources.', tag: 'Subject', isSubjectPage: true },
-          { title: 'Fluid Machines (MEC 405)', desc: 'Extra study materials.', tag: 'Subject' }
-        ];
-      }
+  // Mechanical Routing
+  if (currentCategoryBranch === 'mech' && sem === 'sem3') {
+    if (currentCategoryTitle === 'Books') {
+      data = [
+        { title: 'Mechanics of Materials - Beer & Johnston', desc: '4th Edition', tag: 'Solid Mechanics' },
+        { title: 'Theory of Machines - S.S. Rattan', desc: '3rd Edition', tag: 'Theory of Machines' },
+        { title: 'Engineering Thermodynamics - P.K. Nag', desc: 'Textbook', tag: 'Thermodynamics' },
+        { title: 'Engineering Thermodynamics Solutions - P.K. Nag', desc: 'Solved Exercises', tag: 'Solutions' },
+        { title: 'Fundamentals of Gas Dynamics - R.D. Zucker', desc: 'Textbook', tag: 'Fluid Mechanics' },
+        { title: 'Engineering Subject Reference', desc: 'Additional Book', tag: 'Reference' }
+      ];
+    } else if (currentCategoryTitle === 'Formula/Short Notes') {
+      data = [
+        { title: 'Mathematics 3 (MAC 331)', desc: 'Quick formulas and cheat sheets.', tag: 'Formulas' },
+        { title: 'Solid Mechanics (MEC 301)', desc: 'Complete short notes and formulas.', tag: 'Short Notes' },
+        { title: 'Theory of Machine and Mechanics (MEC 302)', desc: 'Quick formulas and cheat sheets.', tag: 'Formulas' },
+        { title: 'Fluid Mechanics (MEC 303)', desc: 'Quick formulas and cheat sheets.', tag: 'Formulas' },
+        { title: 'Engineering Thermodynamics (MEC 304)', desc: 'Quick formulas and cheat sheets.', tag: 'Formulas' }
+      ];
+    } else if (currentCategoryTitle === 'Lecture Notes' || currentCategoryTitle === 'YouTube Links') {
+      data = [
+        { title: 'Mathematics 3 (MAC 331)', desc: 'Explore topic-wise materials and lectures.', tag: 'Subject' },
+        { title: 'Solid Mechanics (MEC 301)', desc: 'Explore topic-wise materials and lectures.', tag: 'Subject' },
+        { title: 'Theory of Machine and Mechanics (MEC 302)', desc: 'Explore topic-wise materials and lectures.', tag: 'Subject' },
+        { title: 'Fluid Mechanics (MEC 303)', desc: 'Explore topic-wise materials and lectures.', tag: 'Subject' },
+        { title: 'Engineering Thermodynamics (MEC 304)', desc: 'Explore topic-wise materials and lectures.', tag: 'Subject' }
+      ];
     }
-    
-    if (!data) {
-      if (currentCategoryTitle === 'YouTube Links') {
-        data = [
-          { title: 'Subject 1', desc: 'Complete YouTube Playlist and Video Lectures.', tag: 'Playlist' },
-          { title: 'Subject 2', desc: 'NPTEL Video Lectures and crash courses.', tag: 'NPTEL' },
-          { title: 'Subject 3', desc: 'Chapter-wise video explanations.', tag: 'YouTube' },
-          { title: 'Subject 4', desc: 'Important numericals solved on video.', tag: 'Tutorials' },
-          { title: 'Subject 5', desc: 'Extra video study materials and guides.', tag: 'Playlist' }
-        ];
-      } else {
-        data = [
-          { title: 'Subject 1', desc: 'Chapter notes and important PDFs.', tag: 'Subject' },
-          { title: 'Subject 2', desc: 'Previous year papers and solutions.', tag: 'Subject' },
-          { title: 'Subject 3', desc: 'Video lectures and reference links.', tag: 'Subject' },
-          { title: 'Subject 4', desc: 'Assignments and lab manuals.', tag: 'Subject' },
-          { title: 'Subject 5', desc: 'Extra study materials.', tag: 'Subject' }
-        ];
+  } else if (currentCategoryBranch === 'mech' && sem === 'sem4') {
+    if (currentCategoryTitle === 'Books') {
+      data = [
+        { title: 'Design of Machine Elements by McGraw Hill', desc: 'Mechanical Engineering', tag: 'Textbook' }
+      ];
+    } else if (currentCategoryTitle === 'Lecture Notes' || currentCategoryTitle === 'YouTube Links') {
+      data = [
+        { title: 'Design of Machine Elements - 1 (MEC 401)', desc: 'Explore topic-wise materials and lectures.', tag: 'Subject' },
+        { title: 'Casting, Forming and Welding (MEC 402)', desc: 'Explore topic-wise materials and lectures.', tag: 'Subject' },
+        { title: 'Heat and Mass Transfer (MEC 403)', desc: 'Explore topic-wise materials and lectures.', tag: 'Subject' },
+        { title: 'Dynamics of Machine (MEC 404)', desc: 'Topic-wise modules and resources.', tag: 'Subject' },
+        { title: 'Fluid Machines (MEC 405)', desc: 'Explore topic-wise materials and lectures.', tag: 'Subject' }
+      ];
+    }
+  }
+
+  // Civil Routing
+  else if (currentCategoryBranch === 'civil') {
+    const targetCategories = ['Lecture Notes', 'PYQs', 'Formula/Short Notes', 'YouTube Links'];
+    if (targetCategories.includes(currentCategoryTitle)) {
+      let subjects = [];
+      if (sem === 'sem3') subjects = ['Buildings', 'Fluid Mechanics', 'Geology'];
+      else if (sem === 'sem4') subjects = ['Environmental Engineering', 'Hydrology', 'RCC', 'Structural Analysis 1', 'Surveying'];
+      else if (sem === 'sem5') subjects = ['Soil Mechanics', 'Steel Design', 'Structural Analysis 2', 'Transportation', 'GIS (Depth Elective)', 'Transportation (Depth Elective)'];
+      else if (sem === 'sem6') subjects = ['Finite Elements (Depth Elective)'];
+      
+      if (subjects.length > 0) {
+        data = subjects.map(sub => ({ title: sub, desc: 'Explore topic-wise materials and lectures.', tag: 'Subject' }));
       }
     }
   }
 
+  // CSE Routing
+  else if (currentCategoryBranch === 'cse') {
+    const targetCategories = ['Lecture Notes', 'PYQs', 'Formula/Short Notes', 'YouTube Links'];
+    if (targetCategories.includes(currentCategoryTitle)) {
+      let subjects = [];
+      if (sem === 'sem3') subjects = ['Discrete Mathematics', 'Digital Logic Design', 'Algorithm Design and Analysis 1', 'Object Oriented Programming'];
+      else if (sem === 'sem4') subjects = ['Computer Organisation and Architecture', 'Theory of Computation', 'Operating System', 'Database Management System'];
+      else if (sem === 'sem5') subjects = ['Compiler Design', 'Data Communication and Computer Networks', 'Embedded Systems', 'Algorithm Design and Analysis 2'];
+      
+      if (subjects.length > 0) {
+        data = subjects.map(sub => ({ title: sub, desc: 'Explore topic-wise materials and lectures.', tag: 'Subject' }));
+      }
+    }
+  }
+  
+  // If NO data was assigned above, show the clean Coming Soon message
+  if (!data || data.length === 0) {
+    container.innerHTML = `<div style="padding: 60px 20px; text-align: center; color: var(--text-muted); font-size: 16px; font-weight:600; background: var(--input-bg); border-radius:16px;">Content for this section is <span style="display: inline-block; background: var(--badge-bg); color: var(--badge-text); padding: 4px 12px; border-radius: 8px; margin: 0 4px; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px;">coming soon</span>. Stay tuned!</div>`;
+    return;
+  }
+
+  // If there IS data, build the cards
   container.innerHTML = '<div class="resource-grid">' + data.map(item => {
     const safeTitle = item.title.replace(/'/g, "\\'");
     let clickAction = "showToast('Content coming soon!')";
@@ -1687,6 +2006,15 @@ function openSubjectView(title, desc) {
 
   document.getElementById('subjTitle').textContent = title;
   if(desc) document.getElementById('subjDesc').textContent = desc;
+
+  const grid = document.getElementById('subjectContentGrid');
+  
+  // Default Coming Soon state for all subjects while Drive is migrating
+  grid.innerHTML = `<div style="padding: 60px 20px; text-align: center; color: var(--text-muted); font-size: 16px; font-weight:600; background: var(--input-bg); border-radius:16px; grid-column: 1 / -1;">Content for this subject is <span style="display: inline-block; background: var(--badge-bg); color: var(--badge-text); padding: 4px 12px; border-radius: 8px; margin: 0 4px; text-transform: uppercase; font-size: 14px; letter-spacing: 0.5px;">coming soon</span>. Stay tuned!</div>`;
+}
+
+function buildTopicCards(topics, subjectName) {
+  return ''; // Stubbed out for future use
 }
 
 function closeSubjectView() {
@@ -2112,6 +2440,45 @@ function showToast(msg) {
   t.textContent = msg; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2800);
 }
+
+/* ── SKILLS PROGRESSIVE DISCLOSURE LOGIC ── */
+function toggleSkillDropdown() {
+  const header = document.getElementById('skillDropdownHeader');
+  const list = document.getElementById('skillDropdownList');
+  header.classList.toggle('active');
+  list.classList.toggle('open');
+}
+
+function selectSkillOption(type, text, elem) {
+  // Update Dropdown UI
+  document.getElementById('selectedSkillText').textContent = text;
+  document.querySelectorAll('#skillDropdownList .custom-util-item').forEach(el => el.classList.remove('active'));
+  elem.classList.add('active');
+  document.getElementById('skillDropdownHeader').classList.remove('active');
+  document.getElementById('skillDropdownList').classList.remove('open');
+  
+  // Hide all form paths
+  document.getElementById('skill-form-existing').style.display = 'none';
+  document.getElementById('skill-form-new').style.display = 'none';
+  document.getElementById('skill-form-report').style.display = 'none';
+  
+  // Show the selected form path
+  document.getElementById(`skill-form-${type}`).style.display = 'block';
+}
+
+function submitSkillContribution() {
+  showToast('Thank you! Your contribution is under review.');
+  closeModal('skillContributeModal');
+}
+
+// Close the skill dropdown if clicked outside (Add to existing listener)
+document.addEventListener('click', function(e) {
+  const skillDropdownContainer = document.getElementById('skillDropdownContainer');
+  if (skillDropdownContainer && !skillDropdownContainer.contains(e.target)) {
+    document.getElementById('skillDropdownHeader')?.classList.remove('active');
+    document.getElementById('skillDropdownList')?.classList.remove('open');
+  }
+});
 </script>
 </body>
 </html>
